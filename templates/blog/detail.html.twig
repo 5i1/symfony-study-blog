@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 mx-auto">
+                <article class="blog-detail">
+                    <header>
+                        {% if post.title is not empty %}
+                            <h1 class="blog-detail-title">{{ post.title }}</h1>
+                        {% endif %}
+                        <div class="media author">
+                            <img class="mr-3 author-photo rounded-circle"
+                                 src="{{ asset('images/thomaskanzig-2.jpg') }}"
+                                 alt="">
+
+                            <div class="media-body">
+                                <h5 class="mt-1 author-fullname">Thomas Kanzig</h5>
+                                {% if post.created is not empty %}
+                                    <div class="author-date-post">Post in {{ post.created|date("Y/m/d") }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="text">
+                        {% if post.text is not empty %}
+                            {{ post.text|raw }}
+                        {% endif %}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}

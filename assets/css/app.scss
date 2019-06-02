@@ -1,0 +1,17 @@
+// Import the libraries.
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
+
+// Import own css.
+@import 'base/variables';
+@import 'base/mixins';
+
+@import 'components/global';
+@import 'components/navbar';
+@import 'components/footer';
+@import 'components/masthead';
+
+@import 'pages/contact';
+
+@import 'blog/blog-index.scss';
+@import 'blog/blog-detail.scss';

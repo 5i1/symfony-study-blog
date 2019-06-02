@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 mx-auto">
+                {% if 0 < posts|length %}
+                    {% for post in posts %}
+                        <article class="post-preview">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <a href="{{ path('blog_detail', {slug: post.slug}) }}">
+                                        <img src="{{ asset(post.urlPhoto) }}"
+                                             class="post-image rounded img-fluid mr-3"
+                                             alt="{{ post.title }}">
+                                    </a>
+                                </div>
+                                <div class="col-md-7">
+                                    <a href="{{ path('blog_detail', {slug: post.slug}) }}">
+                                        <h2 class="post-title">{{ post.title }}</h2>
+                                        <h3 class="post-subtitle">{{ post.description }}</h3>
+                                    </a>
+
+                                    <p class="post-meta">
+                                        Posted by
+                                        Thomas Kanzig
+                                        on
+                                        {{ post.created|date("Y/m/d") }}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Pager -->
+                <div class="clearfix">
+                    <a class="btn btn-primary float-right" href="#">View All Posts &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
