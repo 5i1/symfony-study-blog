@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostCategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
-class PostCategory
+class Category
 {
     /**
      * @ORM\Id()
@@ -22,9 +22,9 @@ class PostCategory
     private $name;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $parent_id;
+    private $slug;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -35,11 +35,6 @@ class PostCategory
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $deleted;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $slug;
 
     public function getId(): ?int
     {
@@ -58,14 +53,14 @@ class PostCategory
         return $this;
     }
 
-    public function getParentId(): ?int
+    public function getSlug(): ?string
     {
-        return $this->parent_id;
+        return $this->slug;
     }
 
-    public function setParentId(?int $parent_id): self
+    public function setSlug(string $slug): self
     {
-        $this->parent_id = $parent_id;
+        $this->slug = $slug;
 
         return $this;
     }
@@ -90,18 +85,6 @@ class PostCategory
     public function setDeleted(?\DateTimeInterface $deleted): self
     {
         $this->deleted = $deleted;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }
