@@ -13,6 +13,6 @@ Install just minimal symfony project (ex: API):
 composer create-project symfony/skeleton my-project
 ```
 
-To install this project, follow [here](documentation/installation.md)
+To install this project, follow [these] steps.(documentation/installation.md)
 
-For generate an secret key and insert in your environment dev, [here](http://nux.net/secret)
+For generate a secret key and insert it on your environment dev, click [here](http://nux.net/secret)
