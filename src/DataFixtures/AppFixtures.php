@@ -26,7 +26,6 @@ class AppFixtures extends Fixture
         $this->loadPosts($manager);
     }
 
-
     private function loadPosts(ObjectManager $manager)
     {
         $text = '
