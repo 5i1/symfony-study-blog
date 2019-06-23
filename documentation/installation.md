@@ -23,6 +23,7 @@ yarn install
 ##### Build the assets files
 
 ```bash
+yarn encore dev
 yarn encore production
 ```
 
@@ -37,7 +38,14 @@ See [here](https://symfony.com/blog/new-in-symfony-4-2-define-env-vars-per-envir
 
 This file is in `.gitignore` and not will be save in repository.
 
-##### To execute, just follow steps bellow: 
+##### Create and update the database structure with this:
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
+```
+
+##### For execute the website then just follow steps bellow: 
 
 ##### Start server:
 ```bash
@@ -110,6 +118,12 @@ Example file:
    SetEnv DATABASE_URL "mysql://db_user:db_pass@host:3306/db_name"
 
 </VirtualHost>
+```
+##### Create and update the database structure with this:
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
 ```
 
 That's all.
