@@ -50,3 +50,12 @@ php bin/console doctrine:migrations:migrate <version-number>
 
 For more details, then visit the documentation [here](https://symfony.com/doc/current/doctrine.html).
 
+#### Optional:
+When you need some fixtures data, then execute this command below:
+```bash
+# Require fixtures bundle
+composer require --dev orm-fixtures
+
+# Generate fixtures data
+php bin/console doctrine:fixtures:load
+```
