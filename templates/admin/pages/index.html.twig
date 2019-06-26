@@ -1,5 +1,23 @@
 {% extends 'admin.html.twig' %}
 
 {% block body %}
-    Bem-vindo a pagina administrativa!
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Home page
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">Home</li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    Hi {{ app.user.username }}, welcome to Symfony Study Blog.
+                </div>
+            </div>
+        </section>
+    </div>
 {% endblock %}
