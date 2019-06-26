@@ -2,15 +2,10 @@
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('admin') }}
-    <!-- Renders a link tag (if your module requires any CSS)
-         <link rel="stylesheet" href="/build/admin.css"> -->
 {% endblock %}
 
 {% block javascripts %}
     {{ encore_entry_script_tags('admin') }}
-    <!-- Renders admin.js & a webpack runtime.js file
-        <script src="/build/runtime.js"></script>
-        <script src="/build/admin.js"></script> -->
 {% endblock %}
 
 {% block title %} Login {% endblock %}
@@ -21,7 +16,6 @@
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
-
 
     <div class="login-box">
         <div class="login-logo">
@@ -66,7 +60,4 @@
         <!-- /.login-box-body -->
     </div>
     <!-- /.login-box -->
-
-
-
 {% endblock %}
