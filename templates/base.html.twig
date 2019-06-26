@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}Bem-vindo!{% endblock %}</title>
         {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('app') }}
+            {# 'website' must match the first argument to addEntry() in webpack.config.js #}
+            {{ encore_entry_link_tags('website') }}
 
             <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->
@@ -22,11 +22,11 @@
         {% include 'includes/footer.html.twig' %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('website') }}
 
-            <!-- Renders app.js & a webpack runtime.js file
+            <!-- Renders website.js & a webpack runtime.js file
                 <script src="/build/runtime.js"></script>
-                <script src="/build/app.js"></script> -->
+                <script src="/build/website.js"></script> -->
         {% endblock %}
     </body>
 </html>

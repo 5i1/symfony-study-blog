@@ -6,22 +6,32 @@
         <title>{% block title %}Admin Page{% endblock %}</title>
         {% block stylesheets %}
             {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('admin') }}
 
             <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->
         {% endblock %}
     </head>
-    <body>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            {% include 'includes/admin/header.html.twig' %}
 
-        {% block body %}{% endblock %}
+            {% include 'includes/admin/sidebar-left.html.twig' %}
+
+            {% block body %}{% endblock %}
+
+            {% include 'includes/admin/footer.html.twig' %}
+
+            {% include 'includes/admin/sidebar-right.html.twig' %}
+        </div>
+        <!-- ./wrapper -->
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('admin') }}
 
-            <!-- Renders app.js & a webpack runtime.js file
+            <!-- Renders website.js & a webpack runtime.js file
                 <script src="/build/runtime.js"></script>
-                <script src="/build/app.js"></script> -->
+                <script src="/build/website.js"></script> -->
         {% endblock %}
     </body>
 </html>
