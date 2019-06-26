@@ -63,6 +63,11 @@ class User implements UserInterface, \Serializable
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $roles = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -140,11 +145,17 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getRoles()
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return [
-            'ROLE_USER'
-        ];
+        $roles = $this->roles;
+
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function getSalt()
@@ -189,5 +200,12 @@ class User implements UserInterface, \Serializable
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    public function setRoles(?array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 }

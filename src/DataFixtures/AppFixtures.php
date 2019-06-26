@@ -26,7 +26,6 @@ class AppFixtures extends Fixture
         $this->loadPosts($manager);
     }
 
-
     private function loadPosts(ObjectManager $manager)
     {
         $text = '
@@ -98,6 +97,7 @@ class AppFixtures extends Fixture
                 '123456'
             )
         );
+        $user->setRoles(['ROLE_ADMIN']);
         $user->setCreated(new \DateTime('2018-03-15'));
         $this->addReference('thomaskanzig', $user);
 
