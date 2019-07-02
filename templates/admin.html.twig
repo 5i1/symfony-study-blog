@@ -18,7 +18,15 @@
 
             {% include 'includes/admin/sidebar-left.html.twig' %}
 
-            {% block body %}{% endblock %}
+            <div class="content-wrapper">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {% block body %}{% endblock %}
+            </div>
 
             {% include 'includes/admin/footer.html.twig' %}
 

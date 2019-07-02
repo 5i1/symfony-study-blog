@@ -1,41 +1,38 @@
 {% extends 'admin.html.twig' %}
 
 {% block body %}
-    <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                Add new post
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Posts</a></li>
-                <li class="active">Add</li>
-            </ol>
-        </section>
+    <section class="content-header">
+        <h1>
+            Add new post
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Posts</a></li>
+            <li class="active">Add</li>
+        </ol>
+    </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Form</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
-                        {{ form_start(postForm) }}
-                        {{ form_widget(postForm) }}
-                        {{ form_end(postForm) }}
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Form</h3>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    {{ form_start(postForm) }}
+                    {{ form_widget(postForm) }}
+                    {{ form_end(postForm) }}
                 </div>
-                <!--/.col (left) -->
+                <!-- /.box -->
             </div>
-            <!-- /.row -->
-        </section>
-        <!-- /.content -->
-
-    </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
 {% endblock %}

@@ -57,6 +57,8 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
 
+            $this->addFlash('success', 'Post Created! Knowledge is power!');
+
             return $this->redirectToRoute('admin_post_index');
         }
 
