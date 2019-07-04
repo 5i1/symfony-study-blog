@@ -23,7 +23,7 @@ class PostType extends AbstractType
                   FileType::class,
                   ['label' => 'Image file for the post banner' ]
             )
-            ->add('Save Post', SubmitType::class)
+            ->add('save', SubmitType::class)
         ;
     }
 
