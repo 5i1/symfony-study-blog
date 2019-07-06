@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Post;
+use App\Service\UploaderHelper;
+use Gedmo\Sluggable\Util\Urlizer;
 
 class PostController extends AbstractController
 {
@@ -36,7 +38,7 @@ class PostController extends AbstractController
     /**
      * @Route("/admin/post/add", name="admin_post_add")
      */
-    public function add(EntityManagerInterface $em, Request $request)
+    public function add(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
 
         // Create the form based on the FormType we need.
@@ -47,8 +49,13 @@ class PostController extends AbstractController
         $postForm->handleRequest($request);
 
         if ($postForm->isSubmitted() && $postForm->isValid()) {
-            // Process the submitted & validated data retrieved in $form->getData()
-            // Form handling is *here*.
+
+            // Send an image file an store in /public.
+            $uploadedFile = $postForm['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
+                $post->setUrlPhoto($newFilename);
+            }
 
             $post->setSlug('example-of-slug');
             $post->setUser($this->getUser());

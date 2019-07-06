@@ -19,9 +19,12 @@ class PostType extends AbstractType
             ->add('title',  TextType::class)
             ->add('description', TextareaType::class)
             ->add('text', TextareaType::class)
-            ->add('url_photo',
+            ->add('imageFile',
                   FileType::class,
-                  ['label' => 'Image file for the post banner' ]
+                  ['label' => 'Image file for the post banner',
+                   'mapped' => false,
+                   'required' => false
+                  ]
             )
             ->add('save', SubmitType::class)
         ;

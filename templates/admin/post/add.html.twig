@@ -25,7 +25,11 @@
 
                     {{ form_start(postForm) }}
                         <div class="box-body">
-                            {{ form_widget(postForm) }}
+                            {{ form_row(postForm.title) }}
+                            {{ form_row(postForm.description) }}
+                            {{ form_row(postForm.text) }}
+                            {{ form_row(postForm.imageFile) }}
+                            {{ form_row(postForm.save) }}
                         </div>
                     {{ form_end(postForm) }}
                 </div>
