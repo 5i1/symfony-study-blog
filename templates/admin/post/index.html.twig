@@ -68,7 +68,13 @@
                                                         </a>
                                                     </li>
                                                     <li class="divider"></li>
-                                                    <li><a href="#">Delete</a></li>
+                                                    <li>
+                                                        <a href="{{ path('admin_post_delete', {
+                                                            id: post.id
+                                                        }) }}">
+                                                            Delete
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </td>

@@ -119,4 +119,27 @@ class PostController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/post/{id}/delete", name="admin_post_delete")
+     */
+    public function delete(Post $post, EntityManagerInterface $em)
+    {
+
+        if ($post instanceof Post) {
+
+            // Set an date to delete.
+            $post->setDeleted(new \DateTime());
+
+            // To save.
+            $em->persist($post);
+            $em->flush();
+
+            // Set an message after save.
+            $this->addFlash('success', 'Post Deleted!');
+        }
+
+        // Redirect to list.
+        return $this->redirectToRoute('admin_post_index');
+    }
+
 }
