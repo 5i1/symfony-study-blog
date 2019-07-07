@@ -79,4 +79,44 @@ class PostController extends AbstractController
             'postForm' => $postForm->createView()
         ]);
     }
+
+
+    /**
+     * @Route("/admin/post/{id}/edit", name="admin_post_edit")
+     */
+    public function edit(Post $post, EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
+    {
+
+        // Create the form based on the FormType we need.
+        $postForm = $this->createForm(PostType::class, $post);
+
+        // Ask the form to handle the current request.
+        $postForm->handleRequest($request);
+
+        if ($postForm->isSubmitted() && $postForm->isValid()) {
+
+            // Send an image file an store in /public.
+            $uploadedFile = $postForm['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
+                $post->setUrlPhoto($newFilename);
+            }
+
+            // To save.
+            $em->persist($post);
+            $em->flush();
+
+            // Set an message after save.
+            $this->addFlash('success', 'Post Updated!');
+
+            // Redirect to another page.
+            return $this->redirectToRoute('admin_post_index');
+        }
+
+        return $this->render('admin/post/edit.html.twig', [
+            'postForm' => $postForm->createView(),
+            'id' => $post->getId()
+        ]);
+    }
+
 }
