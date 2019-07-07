@@ -47,7 +47,8 @@
 
                     <div class="box-body">
                         {% if postForm.vars.data.urlPhoto is not empty %}
-                        <img src="{{ asset(postForm.vars.data.urlPhoto) }}"
+                        <img src="{{ asset(postForm.vars.data.urlPhoto)|imagine_filter('300x300') }}"
+                             class="img-responsive"
                              alt="">
                         {% endif %}
                     </div>
