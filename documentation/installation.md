@@ -45,6 +45,15 @@ php bin/console doctrine:migrations:diff
 php bin/console doctrine:migrations:migrate
 ```
 
+##### Generate fixtures data to begin development:
+```bash
+bin/console doctrine:fixtures:load
+```
+
+Authentication access:<br>
+**Login:** admin<br> 
+**Password:** admin
+
 ##### For execute the website then just follow steps bellow: 
 
 ##### Start server:
