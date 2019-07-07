@@ -26,7 +26,6 @@ class PostType extends AbstractType
                    'required' => false
                   ]
             )
-            ->add('save', SubmitType::class)
         ;
     }
 

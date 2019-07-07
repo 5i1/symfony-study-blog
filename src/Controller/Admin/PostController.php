@@ -42,13 +42,15 @@ class PostController extends AbstractController
     {
 
         // Create the form based on the FormType we need.
-        $post = new Post();
-        $postForm = $this->createForm(PostType::class, $post);
+        $postForm = $this->createForm(PostType::class);
 
         // Ask the form to handle the current request.
         $postForm->handleRequest($request);
 
         if ($postForm->isSubmitted() && $postForm->isValid()) {
+
+            // Get data of form.
+            $post = $postForm->getData();
 
             // Send an image file an store in /public.
             $uploadedFile = $postForm['imageFile']->getData();
@@ -57,15 +59,19 @@ class PostController extends AbstractController
                 $post->setUrlPhoto($newFilename);
             }
 
+            // Set some others information of post.
             $post->setSlug('example-of-slug');
             $post->setUser($this->getUser());
             $post->setCreated(new \DateTime());
 
+            // To save.
             $em->persist($post);
             $em->flush();
 
-            $this->addFlash('success', 'Post Created! Knowledge is power!');
+            // Set an message after save.
+            $this->addFlash('success', 'Post Created!');
 
+            // Redirect to another page.
             return $this->redirectToRoute('admin_post_index');
         }
 
