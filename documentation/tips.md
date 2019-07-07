@@ -3,6 +3,7 @@
 #### Bundles
 
 [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) (Paginator)
+[LiipImagineBundle](https://github.com/liip/LiipImagineBundle) (Thumbnail Images)
 
 #### By coding
 

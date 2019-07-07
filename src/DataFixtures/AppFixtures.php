@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\User;
 use App\Entity\Post;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -23,7 +24,9 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->loadUsers($manager);
+        $this->loadCategories($manager);
         $this->loadPosts($manager);
+
     }
 
     private function loadPosts(ObjectManager $manager)
@@ -84,9 +87,31 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
+    private function loadCategories(ObjectManager $manager)
+    {
+
+        $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis erat ex, euismod sit amet arcu at, 
+        hendrerit tempor metus.';
+
+        $arr = [['name' => 'Web Developer', 'slug' => 'web-developer'],
+                ['name' => 'Movie', 'slug' => 'movie'],
+        ];
+
+        foreach ($arr as $item) {
+
+            $category = new Category();
+            $category->setName($item['name']);
+            $category->setSlug($item['slug']);
+            $category->setCreated(new \DateTime());
+            $manager->persist($category);
+        }
+
+        $manager->flush();
+    }
 
     private function loadUsers(ObjectManager $manager)
     {
+        // Thomas User.
         $user = new User();
         $user->setUsername('thomaskanzig');
         $user->setFullName('Thomas Kanzig');
@@ -98,10 +123,26 @@ class AppFixtures extends Fixture
             )
         );
         $user->setRoles(['ROLE_ADMIN']);
-        $user->setCreated(new \DateTime('2018-03-15'));
+        $user->setCreated(new \DateTime());
         $this->addReference('thomaskanzig', $user);
-
         $manager->persist($user);
+
+        // Admin User.
+        $user = new User();
+        $user->setUsername('admin');
+        $user->setFullName('Admin Manager');
+        $user->setEmail('admin.manager@example.com');
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword(
+                $user,
+                'admin'
+            )
+        );
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setCreated(new \DateTime());
+        $this->addReference('admin', $user);
+        $manager->persist($user);
+
         $manager->flush();
     }
 }

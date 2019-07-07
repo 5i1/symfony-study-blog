@@ -61,7 +61,12 @@ class PostController extends AbstractController
 
             // Set some others information of post.
             $post->setSlug('example-of-slug');
-            $post->setUser($this->getUser());
+
+            // When not choise an user, then set the user logged.
+            if(!$post->getUser()){
+                $post->setUser($this->getUser());
+            }
+
             $post->setCreated(new \DateTime());
 
             // To save.
