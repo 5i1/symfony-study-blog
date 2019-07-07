@@ -19,15 +19,19 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    /*
+     * List all posts.
+     */
     public function getWithSearchQueryBuilder(?string $term)
     {
         $qb = $this->createQueryBuilder('p');
         if ($term) {
             $qb->andWhere('p.title LIKE :term')
-                ->setParameter('term', '%' . $term . '%')
+               ->setParameter('term', '%' . $term . '%')
             ;
         }
         return $qb
+            ->andWhere('p.deleted IS NULL')
             ->orderBy('p.id', 'DESC')
             ->getQuery()
             ;
