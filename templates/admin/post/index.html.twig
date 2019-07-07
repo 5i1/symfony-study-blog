@@ -60,7 +60,13 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <li><a href="#">Edit</a></li>
+                                                    <li>
+                                                        <a href="{{ path('admin_post_edit', {
+                                                            id: post.id
+                                                        }) }}">
+                                                            Edit
+                                                        </a>
+                                                    </li>
                                                     <li class="divider"></li>
                                                     <li><a href="#">Delete</a></li>
                                                 </ul>
