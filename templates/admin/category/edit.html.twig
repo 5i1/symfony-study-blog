@@ -1,0 +1,63 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>
+            Edit post
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Posts</a></li>
+            <li class="active">Edit</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-9">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Form</h3>
+                    </div>
+
+                    {{ form_start(postForm) }}
+                        <div class="box-body">
+                            {{ form_row(postForm.title) }}
+                            {{ form_row(postForm.description) }}
+                            {{ form_row(postForm.text) }}
+                            {{ form_row(postForm.imageFile) }}
+                            {{ form_row(postForm.categories) }}
+                            {{ form_row(postForm.user) }}
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Edit post</button>
+                        </div>
+                    {{ form_end(postForm) }}
+                </div>
+                <!-- /.box -->
+            </div>
+
+            <div class="col-md-3">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Image</h3>
+                    </div>
+
+                    <div class="box-body">
+                        {% if postForm.vars.data.urlPhoto is not empty %}
+                        <img src="{{ asset(postForm.vars.data.urlPhoto)|imagine_filter('300x300') }}"
+                             class="img-responsive"
+                             alt="">
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+{% endblock %}
