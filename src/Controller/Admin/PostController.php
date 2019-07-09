@@ -11,7 +11,7 @@ use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Post;
 use App\Service\UploaderHelper;
-use Gedmo\Sluggable\Util\Urlizer;
+use Cocur\Slugify\Slugify;
 
 class PostController extends AbstractController
 {
@@ -60,7 +60,8 @@ class PostController extends AbstractController
             }
 
             // Set some others information of post.
-            $post->setSlug('example-of-slug');
+            $slugify = new Slugify();
+            $post->setSlug($slugify->slugify($post->getTitle()));
 
             // When not choise an user, then set the user logged.
             if(!$post->getUser()){
