@@ -20,6 +20,18 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /*
+     * List all active.
+     */
+    public function findAllActive()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.deleted IS NULL')
+            ->orderBy('c.name', 'ASC');
+
+        return $qb;
+    }
+
+    /*
      * List all with search.
      */
     public function getWithSearchQueryBuilder(?string $term)

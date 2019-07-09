@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\User;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Doctrine\ORM\EntityRepository;
 
 class PostType extends AbstractType
 {
@@ -37,7 +39,10 @@ class PostType extends AbstractType
                 'class'     => Category::class,
                 'choice_label' => 'name',
                 'expanded'  => true,
-                'multiple'  => true
+                'multiple'  => true,
+                'query_builder' => function (CategoryRepository $er) {
+                    return $er->findAllActive();
+                },
             ])
             ->add('user', EntityType::class, [
                 'label'     => 'Who is the creator?',
