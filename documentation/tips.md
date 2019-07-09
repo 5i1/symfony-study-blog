@@ -3,7 +3,8 @@
 #### Bundles
 
 [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) (Paginator)<br>
-[LiipImagineBundle](https://github.com/liip/LiipImagineBundle) (Thumbnail Images)
+[LiipImagineBundle](https://github.com/liip/LiipImagineBundle) (Thumbnail Images)<br>
+[Slugify](https://github.com/cocur/slugify) (Generate Slug Text)
 
 #### By coding
 
