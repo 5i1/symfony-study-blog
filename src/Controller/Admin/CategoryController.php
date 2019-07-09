@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\CategoryType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Category;
+use Cocur\Slugify\Slugify;
 
 class CategoryController extends AbstractController
 {
@@ -50,7 +51,8 @@ class CategoryController extends AbstractController
             $category = $categoryForm->getData();
 
             // Set some others information of category.
-            $category->setSlug('example-of-slug');
+            $slugify = new Slugify();
+            $category->setSlug($slugify->slugify($category->getName()));
             $category->setCreated(new \DateTime());
 
             // To save.
@@ -75,7 +77,6 @@ class CategoryController extends AbstractController
      */
     public function edit(Category $category, EntityManagerInterface $em, Request $request)
     {
-
         // Create the form based on the FormType we need.
         $categoryForm = $this->createForm(CategoryType::class, $category);
 
@@ -106,7 +107,6 @@ class CategoryController extends AbstractController
      */
     public function delete(Category $category, EntityManagerInterface $em)
     {
-
         if ($category instanceof Category) {
 
             // Set an date to delete.
