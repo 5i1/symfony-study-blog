@@ -71,8 +71,17 @@
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                                     <li>
-                                                        <a href="#">
-                                                            Edit
+                                                        <a href="{{ path('admin_user_profile', {
+                                                            id: user.id
+                                                        }) }}">
+                                                            Profile
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ path('admin_user_access', {
+                                                            id: user.id
+                                                        }) }}">
+                                                            Access
                                                         </a>
                                                     </li>
                                                     <li class="divider"></li>

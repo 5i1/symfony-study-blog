@@ -2,9 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Form\UserAccessType;
+use App\Form\UserProfileType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
-use Cocur\Slugify\Slugify;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Knp\Component\Pager\PaginatorInterface;
@@ -48,9 +49,6 @@ class UserController extends AbstractController
         // Ask the form to handle the current request.
         $userForm->handleRequest($request);
 
-        //dump($userForm);
-        //die();
-
         if ($userForm->isSubmitted() && $userForm->isValid()) {
 
             // Get data of form.
@@ -88,6 +86,78 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/user/{id}/profile", name="admin_user_profile")
+     */
+    public function profile(User $user, EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
+    {
+
+        // Create the form based on the FormType we need.
+        $userForm = $this->createForm(UserProfileType::class, $user);
+
+        // Ask the form to handle the current request.
+        $userForm->handleRequest($request);
+
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+
+            // Send an image file an store in /public.
+            $uploadedFile = $userForm['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
+                $user->setUrlAvatar($newFilename);
+            }
+
+            // To save.
+            $em->persist($user);
+            $em->flush();
+
+            // Set an message after save.
+            $this->addFlash('success', 'User Updated!');
+
+            // Redirect to another page.
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('admin/user/profile.html.twig', [
+            'userForm' => $userForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/user/{id}/access", name="admin_user_access")
+     */
+    public function access(User $user, EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper, UserPasswordEncoderInterface $passwordEncoder)
+    {
+
+        // Create the form based on the FormType we need.
+        $userForm = $this->createForm(UserAccessType::class, $user);
+
+        // Ask the form to handle the current request.
+        $userForm->handleRequest($request);
+
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+
+            // Set the password.
+            $user->setPassword($passwordEncoder->encodePassword(
+                $user,
+                $userForm['plainPassword']->getData()
+            ));
+
+            // To save.
+            $em->persist($user);
+            $em->flush();
+
+            // Set an message after save.
+            $this->addFlash('success', 'User access is updated!');
+
+            // Redirect to another page.
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('admin/user/access.html.twig', [
+            'userForm' => $userForm->createView()
+        ]);
+    }
 
     /**
      * @Route("/admin/user/{id}/delete", name="admin_user_delete")
