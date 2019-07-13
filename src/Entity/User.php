@@ -41,12 +41,6 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(min=5,max=200)
-     */
-    private $plainPassword;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $created;
@@ -189,22 +183,6 @@ class User implements UserInterface, \Serializable
             $this->username,
             $this->email,
             $this->password) = unserialize($serialized);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * @param mixed $plainPassword
-     */
-    public function setPlainPassword($plainPassword): void
-    {
-        $this->plainPassword = $plainPassword;
     }
 
     public function setRoles(?array $roles): self
