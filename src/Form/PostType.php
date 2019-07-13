@@ -26,7 +26,7 @@ class PostType extends AbstractType
         $builder
             ->add('title',  TextType::class)
             ->add('description', TextareaType::class)
-            ->add('text', TextareaType::class)
+            ->add('text', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
             ->add('imageFile',
                   FileType::class,
                   ['label' => 'Image file for the post banner',

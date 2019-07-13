@@ -15,5 +15,16 @@ require('admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll');
 require('admin-lte/bower_components/fastclick/lib/fastclick.js');
 require('admin-lte/dist/js/adminlte.min');
 
+// CKEditor5.
+const ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+ClassicEditor
+    .create( document.querySelector( '.ckeditor' ) )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
