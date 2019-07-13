@@ -44,14 +44,13 @@
                                 {% for user in users %}
                                     <tr>
                                         <td width="50%">
-
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#">
-                                                        <img class="media-object img-circle"
-                                                             src="https://dummyimage.com/60x60/cccccc/000000.png&text=Avatar"
-                                                             alt="...">
-                                                    </a>
+                                                    {% if user.urlAvatar is not empty %}
+                                                        <img src="{{ asset(user.urlAvatar)|imagine_filter('50x50') }}"
+                                                             class="media-object img-circle"
+                                                             alt="">
+                                                    {% endif %}
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">{{ user.fullName }}</h4>
