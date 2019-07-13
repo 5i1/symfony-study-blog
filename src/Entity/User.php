@@ -58,7 +58,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Please inform an email.")
      * @Assert\Email()
      */
     private $email;
