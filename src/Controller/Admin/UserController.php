@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Form\UserType;
 use App\Repository\UserRepository;
+use Cocur\Slugify\Slugify;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Knp\Component\Pager\PaginatorInterface;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use App\Service\UploaderHelper;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
@@ -32,6 +35,59 @@ class UserController extends AbstractController
             'users' => $pagination,
         ]);
     }
+
+    /**
+     * @Route("/admin/user/add", name="admin_user_add")
+     */
+    public function add(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper, UserPasswordEncoderInterface $passwordEncoder)
+    {
+
+        // Create the form based on the FormType we need.
+        $userForm = $this->createForm(UserType::class);
+
+        // Ask the form to handle the current request.
+        $userForm->handleRequest($request);
+
+        //dump($userForm);
+        //die();
+
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+
+            // Get data of form.
+            $user = $userForm->getData();
+
+            // Set the password.
+            $user->setPassword($passwordEncoder->encodePassword(
+                $user,
+                $userForm['plainPassword']->getData()
+            ));
+
+            // Send an image file an store in /public.
+            $uploadedFile = $userForm['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
+                $user->setUrlAvatar($newFilename);
+            }
+
+            $user->setRoles(['ROLE_ADMIN']);
+            $user->setCreated(new \DateTime());
+
+            // To save.
+            $em->persist($user);
+            $em->flush();
+
+            // Set an message after save.
+            $this->addFlash('success', 'User Created!');
+
+            // Redirect to another page.
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('admin/user/add.html.twig', [
+            'userForm' => $userForm->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/admin/user/{id}/delete", name="admin_user_delete")

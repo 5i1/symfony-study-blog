@@ -58,7 +58,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Please inform an email.")
      * @Assert\Email()
      */
     private $email;
@@ -67,6 +67,11 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="array", nullable=true)
      */
     private $roles = [];
+
+    /**
+     * @ORM\Column(type="string", length=300, nullable=true)
+     */
+    private $url_avatar;
 
     public function getId(): ?int
     {
@@ -205,6 +210,18 @@ class User implements UserInterface, \Serializable
     public function setRoles(?array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getUrlAvatar(): ?string
+    {
+        return $this->url_avatar;
+    }
+
+    public function setUrlAvatar(?string $url_avatar): self
+    {
+        $this->url_avatar = $url_avatar;
 
         return $this;
     }

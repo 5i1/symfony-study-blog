@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -21,17 +22,19 @@ class UserType extends AbstractType {
         $builder->add('username', TextType::class)
                 ->add('email', EmailType::class)
                 ->add('plainPassword', RepeatedType::class, [
+                     // 'mapped' => false,
                       'type' => PasswordType::class,
                       'first_options' => ['label' => 'Password'],
                       'second_options' => ['label' => 'Repeat Password']
                 ])
-                ->add('fullname', TextType::class)
-                ->add('termsAgreed', CheckboxType::class, [
+            ->add('imageFile',
+                FileType::class,
+                ['label' => 'Image file for the post banner',
                     'mapped' => false,
-                    'constraints' => new IsTrue(),
-                    'label' => 'I agree to the terms of service'
-                ])
-                ->add('Register', SubmitType::class)
+                    'required' => false
+                ]
+            )
+                ->add('fullname', TextType::class)
             ;
     }
 
