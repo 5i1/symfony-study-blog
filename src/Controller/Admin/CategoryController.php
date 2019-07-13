@@ -26,7 +26,7 @@ class CategoryController extends AbstractController
         $pagination = $paginator->paginate(
             $queryBuilder, /* query NOT result */
             $request->query->getInt('page', 1)/* page number */,
-            8 /* limit per page */
+            10 /* limit per page */
         );
 
         return $this->render('admin/category/index.html.twig', [
