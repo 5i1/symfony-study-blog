@@ -19,6 +19,24 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /*
+     * List all users.
+    */
+    public function getWithSearchQueryBuilder(?string $term)
+    {
+        $qb = $this->createQueryBuilder('u');
+        if ($term) {
+            $qb->andWhere('u.fullname LIKE :term')
+                ->setParameter('term', '%' . $term . '%')
+            ;
+        }
+        return $qb
+            ->andWhere('u.deleted IS NULL')
+            ->orderBy('u.id', 'DESC')
+            ->getQuery()
+            ;
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
