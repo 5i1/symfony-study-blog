@@ -216,7 +216,7 @@ class User implements UserInterface, \Serializable
 
     public function getUrlAvatar(): ?string
     {
-        return $this->url_avatar;
+        return 'uploads/image/'.$this->url_avatar;
     }
 
     public function setUrlAvatar(?string $url_avatar): self

@@ -4,6 +4,12 @@ liip_imagine:
     driver: "gd"
     filter_sets:
         # define your own name of filter
+        50x50:
+            filters:
+                thumbnail:
+                    size:          [50, 50]
+                    mode:          outbound
+                    allow_upscale: true
         300x300:
             filters:
                 thumbnail:
