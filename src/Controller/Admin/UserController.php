@@ -87,9 +87,9 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/{id}/edit", name="admin_user_edit")
+     * @Route("/admin/user/{id}/profile", name="admin_user_profile")
      */
-    public function edit(User $user, EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
+    public function profile(User $user, EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
 
         // Create the form based on the FormType we need.
@@ -118,7 +118,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('admin_user_index');
         }
 
-        return $this->render('admin/user/edit.html.twig', [
+        return $this->render('admin/user/profile.html.twig', [
             'userForm' => $userForm->createView()
         ]);
     }
