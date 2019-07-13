@@ -13,6 +13,7 @@
     "build": "encore production"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^12.3.1",
     "admin-lte": "^2.4.12",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
