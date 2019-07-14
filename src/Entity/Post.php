@@ -69,6 +69,11 @@ class Post
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $published;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -209,6 +214,18 @@ class Post
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPublished(): ?\DateTimeInterface
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?\DateTimeInterface $published): self
+    {
+        $this->published = $published;
 
         return $this;
     }
