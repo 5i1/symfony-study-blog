@@ -119,7 +119,7 @@ class PostController extends AbstractController
             return $this->redirectToRoute('admin_post_index');
         }
 
-        return $this->render('admin/post/profile.html.twig', [
+        return $this->render('admin/post/edit.html.twig', [
             'postForm' => $postForm->createView(),
             'id' => $post->getId()
         ]);
