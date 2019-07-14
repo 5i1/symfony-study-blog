@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190713171532 extends AbstractMigration
+final class Version20190714125839 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,8 @@ final class Version20190713171532 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE user ADD url_avatar VARCHAR(300) DEFAULT NULL');
+        $this->addSql('ALTER TABLE post ADD published DATETIME DEFAULT NULL');
+        $this->addSql('ALTER TABLE user CHANGE url_avatar url_avatar VARCHAR(300) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +31,7 @@ final class Version20190713171532 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE user DROP url_avatar');
+        $this->addSql('ALTER TABLE post DROP published');
+        $this->addSql('ALTER TABLE user CHANGE url_avatar url_avatar VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci');
     }
 }
