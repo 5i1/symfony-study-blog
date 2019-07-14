@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class PostType extends AbstractType
 {
@@ -29,7 +30,8 @@ class PostType extends AbstractType
             ->add('text', TextareaType::class, [
                 'attr' => [
                     'class' => 'ckeditor'
-                ]
+                ],
+                'required' => false // Is false, for fix an bug in ckeditor.
             ])
             ->add('imageFile',
                   FileType::class,
@@ -55,6 +57,7 @@ class PostType extends AbstractType
                 'placeholder' => 'Select user:',
                 'required' => false
             ])
+            ->add('published',  DateTimeType::class)
         ;
     }
 
