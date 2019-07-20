@@ -20,6 +20,7 @@
     "holderjs": "^2.9.6",
     "jquery": "3.3.1",
     "popper.js": "1.14.7",
+    "reset-css": "^4.0.1",
     "webpack-notifier": "^1.7.0"
   }
 }
