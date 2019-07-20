@@ -46,37 +46,29 @@
                                 {% for post in posts %}
                                     <tr>
                                         <td>{{ post.id }}</td>
-                                        <td>{{ post.title }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_post_edit', {
+                                                id: post.id
+                                            }) }}">
+                                                {{ post.title }}
+                                            </a>
+                                        </td>
                                         <td>{{ post.user.fullName }}</td>
                                         <td>{{ post.created|date("Y/m/d") }}</td>
                                         <td>
-                                            <div class="btn-group btn-group-sm">
-                                                <button type="button" class="btn btn-default">Action</button>
-                                                <button type="button"
-                                                        class="btn btn-default dropdown-toggle"
-                                                        data-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                    <span class="caret"></span>
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <li>
-                                                        <a href="{{ path('admin_post_edit', {
-                                                            id: post.id
-                                                        }) }}">
-                                                            Edit
-                                                        </a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="{{ path('admin_post_delete', {
-                                                            id: post.id
-                                                        }) }}">
-                                                            Delete
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <a href="{{ path('admin_post_edit', {
+                                                id: post.id
+                                            }) }}"
+                                               class="btn btn-xs btn-primary">
+                                                <i class="fa fa-edit"></i> Edit
+                                            </a>
+
+                                            <a href="{{ path('admin_post_delete', {
+                                                id: post.id
+                                            }) }}"
+                                               class="btn btn-xs btn-danger">
+                                                <i class="fa fa-trash"></i> Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 {% endfor %}
