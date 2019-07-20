@@ -33,7 +33,6 @@ class PostRepository extends ServiceEntityRepository
         return $qb
             ->andWhere('p.deleted IS NULL')
             ->orderBy('p.id', 'DESC')
-            ->getQuery()
             ;
     }
 
