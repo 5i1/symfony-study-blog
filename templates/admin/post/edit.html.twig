@@ -24,6 +24,7 @@
 
                     {{ form_start(postForm) }}
                         <div class="box-body">
+                            {{ form_row(postForm.active) }}
                             {{ form_row(postForm.title) }}
                             {{ form_row(postForm.description) }}
                             {{ form_row(postForm.text) }}

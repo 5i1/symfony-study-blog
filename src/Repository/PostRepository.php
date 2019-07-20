@@ -22,7 +22,7 @@ class PostRepository extends ServiceEntityRepository
     /*
      * List all posts.
      */
-    public function getWithSearchQueryBuilder(?string $term)
+    public function getWithSearchQueryBuilder(?string $term, array $where = [])
     {
         $qb = $this->createQueryBuilder('p');
         if ($term) {
@@ -30,6 +30,15 @@ class PostRepository extends ServiceEntityRepository
                ->setParameter('term', '%' . $term . '%')
             ;
         }
+
+        if(array_key_exists( 'active', $where)){
+            if (true === $where['active']) {
+                $qb->andWhere('p.active = 1');
+            } else {
+                $qb->andWhere('p.active = 0');
+            }
+        }
+
         return $qb
             ->andWhere('p.deleted IS NULL')
             ->orderBy('p.id', 'DESC')
