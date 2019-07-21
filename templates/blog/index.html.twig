@@ -22,12 +22,15 @@
                                         <h3 class="post-subtitle">{{ post.description }}</h3>
                                     </a>
 
-                                    <p class="post-meta">
-                                        Posted by
-                                        Thomas Kanzig
-                                        on
-                                        {{ post.created|date("Y/m/d") }}
-                                    </p>
+                                    <div class="media post-user">
+                                        <img src="https://dummyimage.com/50x50/dbdbdb/fff.png"
+                                             class="rounded-circle mr-2"
+                                             alt="...">
+                                        <div class="media-body">
+                                            <h6 class="mt-0 mb-1">Thomas Kanzig</h6>
+                                            <div class="post-user-published text-secondary font-italic">Published in {{ post.created|date("Y/m/d") }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
