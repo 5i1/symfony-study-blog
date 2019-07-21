@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {{ dump(posts) }}
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-md-10 mx-auto">
@@ -10,7 +11,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <a href="{{ path('blog_detail', {slug: post.slug}) }}">
-                                        <img src="{{ asset(post.urlPhoto) }}"
+                                        <img src="{{ asset(post.urlPhoto)|imagine_filter('600x375') }}"
                                              class="post-image rounded img-fluid mr-3"
                                              alt="{{ post.title }}">
                                     </a>
@@ -31,6 +32,8 @@
                             </div>
                         </article>
                     {% endfor %}
+                {% else %}
+                    Não foi encontrado nenhum artigo
                 {% endif %}
 
                 <!-- Pager -->
