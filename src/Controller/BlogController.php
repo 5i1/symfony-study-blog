@@ -19,7 +19,9 @@ class BlogController extends AbstractController
     {
 
         $q = $request->query->get('q'); /* get text search */
-        $queryBuilder = $repository->getWithSearchQueryBuilder($q);
+        $queryBuilder = $repository->getWithSearchQueryBuilder($q, [
+            'active' => true
+        ]);
 
         $pagination = $paginator->paginate(
             $queryBuilder, /* query NOT result */
@@ -27,7 +29,7 @@ class BlogController extends AbstractController
             10 /* limit per page */
         );
 
-        return $this->render('admin/post/index.html.twig', [
+        return $this->render('blog/index.html.twig', [
             'posts' => $pagination,
         ]);
     }
