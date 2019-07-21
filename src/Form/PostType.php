@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,6 +28,7 @@ class PostType extends AbstractType
         $builder
             ->add('title',  TextType::class)
             ->add('description', TextareaType::class)
+            ->add('active', CheckboxType::class)
             ->add('text', TextareaType::class, [
                 'attr' => [
                     'class' => 'ckeditor'

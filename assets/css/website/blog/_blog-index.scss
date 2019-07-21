@@ -8,12 +8,6 @@
         border-bottom: 0;
     }
 
-    @include media-breakpoint-down(sm) {
-        .post-image {
-            margin-bottom: 20px;   
-        }
-    }
-
     a {
         color: $gray-900;
 
@@ -31,31 +25,23 @@
         .post-subtitle {
             font-weight: 300;
             margin: 0 0 10px;
+            font-size: 20px;
+            overflow: hidden;
+            height: 75px;
         }
     }
 
-    .post-meta {
-        font-size: 18px;
-        font-style: italic;
-        margin-top: 0;
-        color: $gray-600;
-
-        a {
-            text-decoration: none;
-            color: $gray-900;
-
-            &:focus,
-            &:hover {
-                text-decoration: underline;
-                color: $primary;
-            }
-        }
+    .post-user .post-user-published {
+        font-size: 16px;
     }
 
-    @media only screen and (min-width: 768px) {
+    @include media-breakpoint-down(sm) {
+        .post-image {
+            margin-bottom: 20px;
+        }
         a {
             .post-title {
-                font-size: 36px;
+                font-size: 30px;
             }
         }
     }

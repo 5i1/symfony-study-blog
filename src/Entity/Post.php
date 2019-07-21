@@ -78,6 +78,11 @@ class Post
      */
     private $published;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     */
+    private $active = false;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -230,6 +235,18 @@ class Post
     public function setPublished(?\DateTimeInterface $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

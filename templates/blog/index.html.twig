@@ -10,7 +10,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <a href="{{ path('blog_detail', {slug: post.slug}) }}">
-                                        <img src="{{ asset(post.urlPhoto) }}"
+                                        <img src="{{ asset(post.urlPhoto)|imagine_filter('600x375') }}"
                                              class="post-image rounded img-fluid mr-3"
                                              alt="{{ post.title }}">
                                     </a>
@@ -18,24 +18,31 @@
                                 <div class="col-md-7">
                                     <a href="{{ path('blog_detail', {slug: post.slug}) }}">
                                         <h2 class="post-title">{{ post.title }}</h2>
-                                        <h3 class="post-subtitle">{{ post.description }}</h3>
+                                        <h3 class="post-subtitle text-limited">{{ post.description }}</h3>
                                     </a>
 
-                                    <p class="post-meta">
-                                        Posted by
-                                        Thomas Kanzig
-                                        on
-                                        {{ post.created|date("Y/m/d") }}
-                                    </p>
+                                    <div class="media post-user">
+                                        <img src="{{ asset(post.user.urlAvatar)|imagine_filter('50x50') }}"
+                                             class="rounded-circle mr-2"
+                                             alt="{{ post.user.fullname }}">
+                                        <div class="media-body">
+                                            <h6 class="mt-0 mb-1">{{ post.user.fullname }}</h6>
+                                            <div class="post-user-published text-secondary font-italic">
+                                                Published in {{ post.published|date("Y/m/d") }}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
                     {% endfor %}
+                {% else %}
+                    Não foi encontrado nenhum artigo
                 {% endif %}
 
                 <!-- Pager -->
                 <div class="clearfix">
-                    <a class="btn btn-primary float-right" href="#">View All Posts &rarr;</a>
+                    {{ knp_pagination_render(posts) }}
                 </div>
             </div>
         </div>
