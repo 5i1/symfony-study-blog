@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(posts) }}
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-md-10 mx-auto">
@@ -19,16 +18,18 @@
                                 <div class="col-md-7">
                                     <a href="{{ path('blog_detail', {slug: post.slug}) }}">
                                         <h2 class="post-title">{{ post.title }}</h2>
-                                        <h3 class="post-subtitle">{{ post.description }}</h3>
+                                        <h3 class="post-subtitle text-limited">{{ post.description }}</h3>
                                     </a>
 
                                     <div class="media post-user">
-                                        <img src="https://dummyimage.com/50x50/dbdbdb/fff.png"
+                                        <img src="{{ asset(post.user.urlAvatar)|imagine_filter('50x50') }}"
                                              class="rounded-circle mr-2"
-                                             alt="...">
+                                             alt="{{ post.user.fullname }}">
                                         <div class="media-body">
-                                            <h6 class="mt-0 mb-1">Thomas Kanzig</h6>
-                                            <div class="post-user-published text-secondary font-italic">Published in {{ post.created|date("Y/m/d") }}</div>
+                                            <h6 class="mt-0 mb-1">{{ post.user.fullname }}</h6>
+                                            <div class="post-user-published text-secondary font-italic">
+                                                Published in {{ post.published|date("Y/m/d") }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

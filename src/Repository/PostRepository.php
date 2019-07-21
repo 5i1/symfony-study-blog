@@ -24,7 +24,13 @@ class PostRepository extends ServiceEntityRepository
      */
     public function getWithSearchQueryBuilder(?string $term, array $where = [])
     {
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('p')
+        // p.user refers to the "user" property on post.
+        ->innerJoin('p.user', 'u')
+        // selects all the user data to avoid the query
+        ->addSelect('u')
+        ;
+
         if ($term) {
             $qb->andWhere('p.title LIKE :term')
                ->setParameter('term', '%' . $term . '%')
