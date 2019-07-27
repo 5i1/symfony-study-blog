@@ -20,7 +20,6 @@
         .post-title {
             font-size: 30px;
             margin-bottom: 10px;
-            font-family: $fontText;
 
             @include media-breakpoint-down(sm) {
                 font-size: 30px;
@@ -33,7 +32,6 @@
             font-size: 18px;
             overflow: hidden;
             height: 75px;
-            font-family: $fontText;
             font-weight: 300;
             line-height: 26px;
 
@@ -47,13 +45,8 @@
     .post-user {
         margin-top: 15px;
 
-        .post-user-name {
-            font-family: $fontText;
-        }
-
         .post-user-published {
             font-size: 14px;
-            font-family: $fontText;
             font-weight: 200;
         }
 
