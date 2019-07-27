@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{% block title %}Bem-vindo!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
         {% block stylesheets %}
             {# 'website' must match the first argument to addEntry() in webpack.config.js #}
             {{ encore_entry_link_tags('website') }}
