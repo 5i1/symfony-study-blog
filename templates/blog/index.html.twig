@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    {{ name_site }} - Blog
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 col-md-10 mx-auto">
+            <div class="col-lg-10 col-md-12 mx-auto">
                 {% if 0 < posts|length %}
                     {% for post in posts %}
                         <article class="post-preview">
@@ -26,8 +30,8 @@
                                              class="rounded-circle mr-2"
                                              alt="{{ post.user.fullname }}">
                                         <div class="media-body">
-                                            <h6 class="mt-0 mb-1">{{ post.user.fullname }}</h6>
-                                            <div class="post-user-published text-secondary font-italic">
+                                            <h6 class="post-user-name mt-1 mb-1">{{ post.user.fullname }}</h6>
+                                            <div class="post-user-published text-secondary">
                                                 Published in {{ post.published|date("Y/m/d") }}
                                             </div>
                                         </div>
