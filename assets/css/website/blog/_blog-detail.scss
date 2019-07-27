@@ -1,14 +1,26 @@
 .blog-detail {
     .blog-detail-title {
         margin-bottom: 40px;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 28px;
+        }
+    }
+
+    .blog-detail-image {
+        width: 100%;
     }
 
     .text {
         p {
             font-size: 20px;
-            font-weight: initial;
+            font-weight: 300;
             line-height: 1.6;
             color: $colorGreyDark;
+
+            @include media-breakpoint-down(sm) {
+                font-size: 16px;
+            }
         }
     }
 
@@ -23,7 +35,8 @@
     }
 
     .author-date-post {
-        font-size: 12px;
+        font-size: 14px;
+        font-weight: 200;
     }
 
     .author-photo {
