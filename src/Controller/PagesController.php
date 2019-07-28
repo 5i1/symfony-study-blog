@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\UploaderHelper;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -34,7 +36,7 @@ class PagesController extends AbstractController
     /**
      * @Route("/register", name="pages_register")
      */
-    public function register(UserPasswordEncoderInterface $passwordEncoder, Request $request)
+    public function register(EntityManagerInterface $em, UploaderHelper $uploaderHelper, UserPasswordEncoderInterface $passwordEncoder, Request $request)
     {
         $user = new User();
         $form = $this->createForm(UserType::class,
@@ -44,18 +46,36 @@ class PagesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $passwordEncoder->encodePassword(
+
+
+            // Get data of form.
+            $user = $form->getData();
+
+            // Set the password.
+            $user->setPassword($passwordEncoder->encodePassword(
                 $user,
-                $user->getPlainPassword()
-            );
+                $form['plainPassword']->getData()
+            ));
 
-            $user->setPassword($password);
+            // Send an image file an store in /public.
+            $uploadedFile = $form['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
+                $user->setUrlAvatar($newFilename);
+            }
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $user->setRoles(['ROLE_ADMIN']);
+            $user->setCreated(new \DateTime());
 
-            $this->redirect('blog_index');
+            // To save.
+            $em->persist($user);
+            $em->flush();
+
+            // Set an message after save.
+            $this->addFlash('success', 'User Created!');
+
+            // Redirect to another page.
+            return $this->redirectToRoute('blog_index');
         }
 
         return $this->render('pages/register.html.twig', [
