@@ -32,7 +32,7 @@ yarn encore production
 composer require --dev server
 ```
 
-Before start to code, when you local then create an file in root path, `.env.local` and write all necessary configuration (secret, database...) in your environment.
+Before start to code, when you local then create an file `.env.local` in root path and write all necessary configuration (secret, database...) in your environment.
 
 See [here](https://symfony.com/blog/new-in-symfony-4-2-define-env-vars-per-environment) to explain more.
 
