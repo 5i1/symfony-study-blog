@@ -1,6 +1,6 @@
 # Installation
 
-### In your environment dev
+## Local Environment
 
 ##### Git clone 
 
@@ -63,18 +63,18 @@ $ php bin/console server:run
 
 ---
 
-### In your web server
+## Production Environment (Web Server)
 
 ##### Git clone or you own project
 
 ```bash
-git clone https://github.com/5i1/symfony-blog.git
+git clone https://github.com/5i1/symfony-study-blog .
 ```
 
 ##### Install composer (only used the necessary dependences)
 
 ```bash
-composer install -n --prefer-dist
+composer install --no-dev --prefer-dist --optimize-autoloader
 ```
 
 ##### Install yarn package
