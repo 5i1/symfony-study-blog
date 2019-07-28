@@ -44,14 +44,13 @@
                                 {% for user in users %}
                                     <tr>
                                         <td width="50%">
-
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#">
-                                                        <img class="media-object img-circle"
-                                                             src="https://dummyimage.com/60x60/cccccc/000000.png&text=Avatar"
-                                                             alt="...">
-                                                    </a>
+                                                    {% if user.urlAvatar is not empty %}
+                                                        <img src="{{ asset(user.urlAvatar)|imagine_filter('50x50') }}"
+                                                             class="media-object img-circle"
+                                                             alt="">
+                                                    {% endif %}
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">{{ user.fullName }}</h4>
@@ -61,31 +60,26 @@
                                         </td>
                                         <td>{{ user.created|date("Y/m/d") }}</td>
                                         <td>
-                                            <div class="btn-group btn-group-sm">
-                                                <button type="button" class="btn btn-default">Action</button>
-                                                <button type="button"
-                                                        class="btn btn-default dropdown-toggle"
-                                                        data-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                    <span class="caret"></span>
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <li>
-                                                        <a href="#">
-                                                            Edit
-                                                        </a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="{{ path('admin_user_delete', {
-                                                            id: user.id
-                                                        }) }}">
-                                                            Delete
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <a href="{{ path('admin_user_profile', {
+                                                id: user.id
+                                            }) }}"
+                                               class="btn btn-xs btn-primary">
+                                                <i class="fa fa-user"></i> Profile
+                                            </a>
+
+                                            <a href="{{ path('admin_user_access', {
+                                                id: user.id
+                                            }) }}"
+                                               class="btn btn-xs btn-info">
+                                                <i class="fa fa-lock"></i> Access
+                                            </a>
+
+                                            <a href="{{ path('admin_user_delete', {
+                                                id: user.id
+                                            }) }}"
+                                               class="btn btn-xs btn-danger">
+                                                <i class="fa fa-trash"></i> Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 {% endfor %}

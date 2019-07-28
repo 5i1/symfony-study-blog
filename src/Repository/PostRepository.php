@@ -22,14 +22,29 @@ class PostRepository extends ServiceEntityRepository
     /*
      * List all posts.
      */
-    public function getWithSearchQueryBuilder(?string $term)
+    public function getWithSearchQueryBuilder(?string $term, array $where = [])
     {
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('p')
+        // p.user refers to the "user" property on post.
+        ->innerJoin('p.user', 'u')
+        // selects all the user data to avoid the query
+        ->addSelect('u')
+        ;
+
         if ($term) {
             $qb->andWhere('p.title LIKE :term')
                ->setParameter('term', '%' . $term . '%')
             ;
         }
+
+        if(array_key_exists( 'active', $where)){
+            if (true === $where['active']) {
+                $qb->andWhere('p.active = 1');
+            } else {
+                $qb->andWhere('p.active = 0');
+            }
+        }
+
         return $qb
             ->andWhere('p.deleted IS NULL')
             ->orderBy('p.id', 'DESC')

@@ -1,26 +1,35 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 col-md-10 mx-auto">
+            <div class="col-lg-8 col-md-12 mx-auto">
                 <article class="blog-detail">
                     <header>
                         {% if post.title is not empty %}
                             <h1 class="blog-detail-title">{{ post.title }}</h1>
                         {% endif %}
-                        <div class="media author">
-                            <img class="mr-3 author-photo rounded-circle"
-                                 src="{{ asset('images/thomaskanzig-2.jpg') }}"
-                                 alt="">
-
+                        <div class="media author mb-4">
+                            <img src="{{ asset(post.user.urlAvatar)|imagine_filter('50x50') }}"
+                                 class="mr-3 author-photo rounded-circle"
+                                 alt="{{ post.user.fullname }}">
                             <div class="media-body">
-                                <h5 class="mt-1 author-fullname">Thomas Kanzig</h5>
+                                <h5 class="mt-2 mb-1 author-fullname">{{ post.user.fullname }}</h5>
                                 {% if post.created is not empty %}
-                                    <div class="author-date-post">Post in {{ post.created|date("Y/m/d") }}</div>
+                                    <div class="author-date-post">Published in {{ post.published|date("Y/m/d") }}</div>
                                 {% endif %}
                             </div>
                         </div>
+
+                        {% if post.urlPhoto is not empty %}
+                            <img src="{{ asset(post.urlPhoto)|imagine_filter('1000x600') }}"
+                                 class="blog-detail-image rounded img-fluid mb-2"
+                                 alt="">
+                        {% endif %}
                     </header>
 
                     <div class="text">

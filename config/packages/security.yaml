@@ -3,6 +3,7 @@ security:
         App\Entity\User: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        # Choose any name.
         database_users:
             entity: { class: App\Entity\User, property: username}
     firewalls:

@@ -3,11 +3,11 @@
 {% block body %}
     <section class="content-header">
         <h1>
-            Add new post
+            Add new user
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Posts</a></li>
+            <li><a href="#">Users</a></li>
             <li class="active">Add</li>
         </ol>
     </section>
@@ -23,22 +23,19 @@
                         <h3 class="box-title">Form</h3>
                     </div>
 
-                    {{ form_start(postForm) }}
+                    {{ form_start(userForm) }}
                         <div class="box-body">
-                            {{ form_row(postForm.active) }}
-                            {{ form_row(postForm.title) }}
-                            {{ form_row(postForm.description) }}
-                            {{ form_row(postForm.text) }}
-                            {{ form_row(postForm.imageFile) }}
-                            {{ form_row(postForm.categories) }}
-                            {{ form_row(postForm.user) }}
-                            {{ form_row(postForm.published) }}
+                            {{ form_row(userForm.fullname) }}
+                            {{ form_row(userForm.username) }}
+                            {{ form_row(userForm.email) }}
+                            {{ form_row(userForm.plainPassword) }}
+                            {{ form_row(userForm.imageFile) }}
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Add new post</button>
+                            <button type="submit" class="btn btn-primary">Add new user</button>
                         </div>
-                    {{ form_end(postForm) }}
+                    {{ form_end(userForm) }}
                 </div>
                 <!-- /.box -->
             </div>

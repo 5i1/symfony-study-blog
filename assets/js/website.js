@@ -31,4 +31,3 @@ $window.scroll(function() {
         i < previousTop ? 0 < i && $nav.hasClass('is-fixed') ? $nav.addClass('is-visible') : $nav.removeClass('is-visible is-fixed') : i > previousTop && ($nav.removeClass('is-visible'), s < i && !$nav.hasClass('is-fixed') && $nav.addClass('is-fixed')), previousTop = i;
     }
 });
-

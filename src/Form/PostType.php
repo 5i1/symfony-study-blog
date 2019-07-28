@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class PostType extends AbstractType
 {
@@ -26,7 +28,13 @@ class PostType extends AbstractType
         $builder
             ->add('title',  TextType::class)
             ->add('description', TextareaType::class)
-            ->add('text', TextareaType::class, ['attr' => ['class' => 'ckeditor']])
+            ->add('active', CheckboxType::class)
+            ->add('text', TextareaType::class, [
+                'attr' => [
+                    'class' => 'ckeditor'
+                ],
+                'required' => false // Is false, for fix an bug in ckeditor.
+            ])
             ->add('imageFile',
                   FileType::class,
                   ['label' => 'Image file for the post banner',
@@ -51,6 +59,7 @@ class PostType extends AbstractType
                 'placeholder' => 'Select user:',
                 'required' => false
             ])
+            ->add('published',  DateTimeType::class)
         ;
     }
 

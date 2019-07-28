@@ -3,12 +3,12 @@
 {% block body %}
     <section class="content-header">
         <h1>
-            Edit post
+            Edit access "{{ userForm.vars.data.fullname }}"
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Posts</a></li>
-            <li class="active">Edit</li>
+            <li><a href="#">Users</a></li>
+            <li class="active">Access</li>
         </ol>
     </section>
 
@@ -22,22 +22,15 @@
                         <h3 class="box-title">Form</h3>
                     </div>
 
-                    {{ form_start(postForm) }}
+                    {{ form_start(userForm) }}
                         <div class="box-body">
-                            {{ form_row(postForm.active) }}
-                            {{ form_row(postForm.title) }}
-                            {{ form_row(postForm.description) }}
-                            {{ form_row(postForm.text) }}
-                            {{ form_row(postForm.imageFile) }}
-                            {{ form_row(postForm.categories) }}
-                            {{ form_row(postForm.user) }}
-                            {{ form_row(postForm.published) }}
+                            {{ form_row(userForm.plainPassword) }}
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Edit post</button>
+                            <button type="submit" class="btn btn-primary">Edit access</button>
                         </div>
-                    {{ form_end(postForm) }}
+                    {{ form_end(userForm) }}
                 </div>
                 <!-- /.box -->
             </div>
@@ -49,8 +42,8 @@
                     </div>
 
                     <div class="box-body">
-                        {% if postForm.vars.data.urlPhoto is not empty %}
-                        <img src="{{ asset(postForm.vars.data.urlPhoto)|imagine_filter('300x300') }}"
+                        {% if userForm.vars.data.urlAvatar is not empty %}
+                        <img src="{{ asset(userForm.vars.data.urlAvatar)|imagine_filter('300x300') }}"
                              class="img-responsive"
                              alt="">
                         {% endif %}
