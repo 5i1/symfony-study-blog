@@ -4,8 +4,8 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_3_layout.html.twig']
     globals:
-        facebook_url:  'https://www.facebook.com/thomas.kanzig'
-        instagram_url: 'https://www.instagram.com/thomas.kanzig/'
-        github_url:    'https://github.com/thomaskanzig'
-        linkedin_url:  'https://www.linkedin.com/in/thomas-kanzig-b1018a116/'
-        name_site:     'Thomas Kanzig'
+        facebook_url:  '%env(FACEBOOK_URL)%'
+        instagram_url: '%env(INSTAGRAM_URL)%'
+        github_url:    '%env(GITHUB_URL)%'
+        linkedin_url:  '%env(LINKEDIN_URL)%'
+        name_site:     '%env(APP_NAME)%'
