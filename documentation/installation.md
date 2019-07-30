@@ -95,39 +95,25 @@ yarn encore production
 composer require symfony/apache-pack
 ```
 
-In your sites-available by the .conf file, you need to change the environment to prod:
+##### Configure your .env
+Exist more way to configure variable in your environment, but the easiest way is just create an simple `.env.local` file and inform all variable you needed.
 
 ```bash
-    # The value of the environment variables used in the symfony application
-    SetEnv APP_ENV prod
-    SetEnv APP_SECRET <your-secret>
-    SetEnv DATABASE_URL "mysql://db_user:db_pass@host:3306/db_name"
+# Config
+APP_ENV=dev
+APP_SECRET=f9c53050608c5d72494b951494c1ceb6
+DATABASE_URL=mysql://root:12345@127.0.0.1:3306/thomaskanzig_db
 
-</VirtualHost>
+# Costum variables
+APP_NAME='Thomas Kanzig'
+FACEBOOK_URL='https://www.facebook.com/thomas.kanzig'
+INSTAGRAM_URL='https://www.instagram.com/thomas.kanzig/'
+GITHUB_URL='https://github.com/thomaskanzig'
+LINKEDIN_URL='https://www.linkedin.com/in/thomas-kanzig-b1018a116/'
+
 ```
+Obs: You can just make an copy from `.env.test` file and configure your own environment.
 
-and change the root document set for public/ folder:
-DocumentRoot /var/www/project/public
-
-Example file:
-
-```bash
-<VirtualHost *:80>
-
-    ServerName www.thomaskanzig.com
-    ServerAlias thomaskanzig.com
-    DocumentRoot /var/www/html/sites/thomaskanzig/public
-    ErrorLog /var/www/html/sites/thomaskanzig/public/error.log
-    CustomLog /var/www/html/sites/thomaskanzig/public/requests.log combined
-    RewriteEngine on
-
-   # optionally set the value of the environment variables used in the application
-   SetEnv APP_ENV prod
-   SetEnv APP_SECRET 72733826773dc81024b2351c558203275118e947
-   SetEnv DATABASE_URL "mysql://db_user:db_pass@host:3306/db_name"
-
-</VirtualHost>
-```
 ##### Create and update the database structure with this:
 ```bash
 php bin/console doctrine:database:create
