@@ -101,15 +101,15 @@ Exist more way to configure variable in your environment, but the easiest way is
 ```bash
 # Config
 APP_ENV=dev
-APP_SECRET=f9c53050608c5d72494b951494c1ceb6
-DATABASE_URL=mysql://root:12345@127.0.0.1:3306/thomaskanzig_db
+APP_SECRET=f9c53050608c5d72494b9asdas6e331sda
+DATABASE_URL=mysql://root:12345@127.0.0.1:3306/database_name
 
 # Costum variables
-APP_NAME='Thomas Kanzig'
-FACEBOOK_URL='https://www.facebook.com/thomas.kanzig'
-INSTAGRAM_URL='https://www.instagram.com/thomas.kanzig/'
-GITHUB_URL='https://github.com/thomaskanzig'
-LINKEDIN_URL='https://www.linkedin.com/in/thomas-kanzig-b1018a116/'
+APP_NAME='Project'
+FACEBOOK_URL='https://www.facebook.com'
+INSTAGRAM_URL='https://www.instagram.com'
+GITHUB_URL='https://github.com'
+LINKEDIN_URL='https://www.linkedin.com'
 
 ```
 Obs: You can just make an copy from `.env.test` file and configure your own environment.
