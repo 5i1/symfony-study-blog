@@ -100,7 +100,7 @@ Exist more way to configure variable in your environment, but the easiest way is
 
 ```bash
 # Config
-APP_ENV=dev
+APP_ENV=prod
 APP_SECRET=f9c53050608c5d72494b9asdas6e331sda
 DATABASE_URL=mysql://root:12345@127.0.0.1:3306/database_name
 
