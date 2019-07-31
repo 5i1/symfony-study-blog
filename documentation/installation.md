@@ -121,6 +121,16 @@ php bin/console doctrine:migrations:diff
 php bin/console doctrine:migrations:migrate
 ```
 
+#### Folders and Permissions
+Must be create two folders and set permission `777`, follow the commands below and execute this in root path of the project:
+```bash
+mkdir public/uploads
+sudo chmod -R 777 public/uploads
+mkdir public/media
+sudo chmod -R 777 public/media
+```
+    
+
 That's all.
 
 For more information about the web server configuration and how improvement performance, access [here](https://symfony.com/doc/current/setup/web_server_configuration.html).
