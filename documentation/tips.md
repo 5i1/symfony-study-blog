@@ -8,7 +8,8 @@
 
 #### Utilites
 [Dummy Image](https://dummyimage.com/) (Image Generator)<br>
-[CKEditor5](https://ckeditor5.github.io/) (CKEditor5, Follow the [documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html))
+[CKEditor5](https://ckeditor5.github.io/) (CKEditor5, Follow the [documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html))<br>
+[Favicon Generator](https://favicon.io/) (Create a favicon in few simple clicks.)
 
 #### By coding
 
