@@ -3,7 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{% block title %}{% endblock %}</title>
+
+        {%- block meta -%}
+            {%- include "includes/meta.html.twig" %}
+        {% endblock %}
+
+        {%- block metaIcons -%}
+            {%- include "includes/meta-icons.html.twig" %}
+        {% endblock %}
+
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
         {% block stylesheets %}
             {# 'website' must match the first argument to addEntry() in webpack.config.js #}

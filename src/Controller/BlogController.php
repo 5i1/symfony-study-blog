@@ -29,8 +29,12 @@ class BlogController extends AbstractController
             10 /* limit per page */
         );
 
+        // Get globals variables from twig.
+        $twigGlobals = $this->get('twig')->getGlobals();
+
         return $this->render('blog/index.html.twig', [
             'posts' => $pagination,
+            'metaTitle' => 'Blog - '.$twigGlobals['name_site'],
         ]);
     }
 
@@ -52,6 +56,9 @@ class BlogController extends AbstractController
 
         return $this->render('blog/detail.html.twig', [
             'post' => $post,
+            'metaTitle' => $post->getTitle(),
+            'metaDescription' => $post->getDescription(),
+            'metaImage' => $post->getUrlPhoto(),
         ]);
     }
 }

@@ -25,6 +25,6 @@ liip_imagine:
         1000x600:
             filters:
                 thumbnail:
-                    size:          [600, 375]
+                    size:          [1000, 600]
                     mode:          outbound
                     allow_upscale: true
