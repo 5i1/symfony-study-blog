@@ -20,12 +20,6 @@
                                 {% endif %}
                             </div>
                         </div>
-
-                        {% if post.urlPhoto is not empty %}
-                            <img src="{{ asset(post.urlPhoto)|imagine_filter('1000x600') }}"
-                                 class="blog-detail-image rounded img-fluid mb-2"
-                                 alt="">
-                        {% endif %}
                     </header>
 
                     <div class="text">

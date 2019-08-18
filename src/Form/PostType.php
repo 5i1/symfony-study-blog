@@ -28,11 +28,10 @@ class PostType extends AbstractType
         $builder
             ->add('title',  TextType::class)
             ->add('description', TextareaType::class)
-            ->add('active', CheckboxType::class)
+            ->add('active', CheckboxType::class,[
+                'required' => false
+            ])
             ->add('text', TextareaType::class, [
-                'attr' => [
-                    'class' => 'ckeditor'
-                ],
                 'required' => false // Is false, for fix an bug in ckeditor.
             ])
             ->add('imageFile',

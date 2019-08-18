@@ -63,3 +63,7 @@
     </section>
     <!-- /.content -->
 {% endblock %}
+
+{% block scripts %}
+    {%- include "includes/admin/scripts/ckeditor.html.twig" with {'ids': ['post_text']} only %}
+{% endblock %}
