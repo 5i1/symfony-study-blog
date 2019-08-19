@@ -36,6 +36,11 @@ class Folder
      */
     private $deleted;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     */
+    private $active;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Folder
     public function setDeleted(?\DateTimeInterface $deleted): self
     {
         $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }
