@@ -47,8 +47,13 @@ class Media
     private $type;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $folder_id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Folder")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $folder;
 
@@ -138,6 +143,18 @@ class Media
     public function setFolder(?Folder $folder): self
     {
         $this->folder = $folder;
+
+        return $this;
+    }
+
+    public function getFolderId(): ?int
+    {
+        return $this->title;
+    }
+
+    public function setFolderId(?string $folder_id): self
+    {
+        $this->folder_id = $folder_id;
 
         return $this;
     }
