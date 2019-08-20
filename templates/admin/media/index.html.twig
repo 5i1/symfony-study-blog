@@ -55,11 +55,11 @@
                                     {% for media in medias %}
                                         <div class="col-xs-12 col-md-3">
                                             <div class="thumbnail">
-                                                <img src="https://dummyimage.com/600x400/dbdbdb/ffffff.png"
-                                                     alt="..."
+                                                <img src="{{ media.file }}"
+                                                     alt="{{ media.title }}"
                                                      class="img-responsive">
                                                 <div class="caption">
-                                                    <h4>Thumbnail label</h4>
+                                                    <h4>{{ media.title }}</h4>
                                                     <p>
                                                         <a href="#" class="btn btn-xs btn-default" role="button"><i class="fa fa-edit"></i> Edit</a>
                                                         <a href="#" class="btn btn-xs btn-danger" role="button"><i class="fa fa-trash"></i> Delete</a>
