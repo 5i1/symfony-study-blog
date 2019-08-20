@@ -38,7 +38,7 @@
                                 <div class="row">
                                     {% for folder in folders %}
                                         <div class="col-xs-6 col-md-2">
-                                            <a class="btn btn-app media-index-btn-folder">
+                                            <a href="{{ path('admin_media_index', {folder: folder.id}) }}" class="btn btn-app media-index-btn-folder">
                                                 <!--span class="badge bg-yellow">3</span-->
                                                 <i class="fa fa-folder"></i> {{ folder.name }}
                                             </a>
