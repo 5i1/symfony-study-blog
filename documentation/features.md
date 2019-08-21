@@ -4,7 +4,8 @@
 
 [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) (Paginator)  
 [LiipImagineBundle](https://github.com/liip/LiipImagineBundle) (Thumbnail Images)  
-[Slugify](https://github.com/cocur/slugify) (Generate Slug Text)
+[Slugify](https://github.com/cocur/slugify) (Generate Slug Text)  
+[Twig Extension](https://github.com/massiveart/web-twig)
 
 #### Utilites
 [Dummy Image](https://dummyimage.com/) (Image Generator)  
