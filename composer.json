@@ -9,6 +9,7 @@
         "gedmo/doctrine-extensions": "^2.4",
         "knplabs/knp-paginator-bundle": "^4.0",
         "liip/imagine-bundle": "^2.1",
+        "massive/web-twig-extensions": "^1.5",
         "sensio/framework-extra-bundle": "^5.3",
         "symfony/asset": "4.2.*",
         "symfony/console": "4.2.*",

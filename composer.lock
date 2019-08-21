@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16cde37e9b3683dfad058235e2e4d33d",
+    "content-hash": "7c90030f3c249a9c6a968b0745456a34",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1836,6 +1836,53 @@
                 "transformation"
             ],
             "time": "2018-07-10T12:53:54+00:00"
+        },
+        {
+            "name": "massive/web-twig-extensions",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/massiveart/web-twig.git",
+                "reference": "b701ab05ef6f4598f958f36919b23842865889c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/massiveart/web-twig/zipball/b701ab05ef6f4598f958f36919b23842865889c7",
+                "reference": "b701ab05ef6f4598f958f36919b23842865889c7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.5 || ~7.0",
+                "twig/twig": "^1.11 || ^2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.11",
+                "phpunit/phpunit": "^5.0 || ^6.0 || ^7.0",
+                "symfony/intl": "^2.8 || ^3.0 || ^4.0",
+                "symfony/property-access": "^2.8 || ^3.0 || ^4.0"
+            },
+            "suggest": {
+                "symfony/intl": "The IntlTwigExtension requires the symfony/intl service.",
+                "symfony/property-access": "The ImageTwigExtension requires the symfony/property-access service."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Massive\\Component\\Web\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Massive Web Twig contributors",
+                    "homepage": "https://github.com/massiveart/web-twig/graphs/contributors"
+                }
+            ],
+            "description": "The web twig extension for web-js component management",
+            "time": "2018-12-21T12:05:12+00:00"
         },
         {
             "name": "monolog/monolog",
