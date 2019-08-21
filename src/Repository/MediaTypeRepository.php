@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\MediaFolder;
+use App\Entity\MediaType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method MediaFolder|null find($id, $lockMode = null, $lockVersion = null)
- * @method MediaFolder|null findOneBy(array $criteria, array $orderBy = null)
- * @method MediaFolder[]    findAll()
- * @method MediaFolder[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method MediaType|null find($id, $lockMode = null, $lockVersion = null)
+ * @method MediaType|null findOneBy(array $criteria, array $orderBy = null)
+ * @method MediaType[]    findAll()
+ * @method MediaType[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MediaFolderRepository extends ServiceEntityRepository
+class MediaTypeRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, MediaFolder::class);
+        parent::__construct($registry, MediaType::class);
     }
 
     // /**
-    //  * @return MediaFolder[] Returns an array of MediaFolder objects
+    //  * @return MediaType[] Returns an array of MediaType objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MediaFolderRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?MediaFolder
+    public function findOneBySomeField($value): ?MediaType
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

@@ -42,15 +42,26 @@ class Media
     private $file;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $type;
+    private $folder_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Folder")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $folder;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     */
+    private $external;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\MediaType")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
 
 
     public function getId(): ?int
@@ -118,18 +129,6 @@ class Media
         return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getFolder(): ?Folder
     {
         return $this->folder;
@@ -138,6 +137,42 @@ class Media
     public function setFolder(?Folder $folder): self
     {
         $this->folder = $folder;
+
+        return $this;
+    }
+
+    public function getFolderId(): ?int
+    {
+        return $this->title;
+    }
+
+    public function setFolderId(?string $folder_id): self
+    {
+        $this->folder_id = $folder_id;
+
+        return $this;
+    }
+
+    public function getExternal(): ?bool
+    {
+        return $this->external;
+    }
+
+    public function setExternal(bool $external): self
+    {
+        $this->external = $external;
+
+        return $this;
+    }
+
+    public function getType(): ?MediaType
+    {
+        return $this->type;
+    }
+
+    public function setType(?MediaType $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

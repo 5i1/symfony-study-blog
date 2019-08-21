@@ -19,22 +19,28 @@ class FolderRepository extends ServiceEntityRepository
         parent::__construct($registry, Folder::class);
     }
 
-    // /**
-    //  * @return Folder[] Returns an array of Folder objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Return all active folders from an parent id.
+     *
+     * @param integer $parendId
+     * @return Folder[] Returns an array of Media objects
+     */
+    public function findByParentId(int $parendId = null)
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
+        $queryBuilder = $this->createQueryBuilder('f');
+
+        if ($parendId) {
+            $queryBuilder->andWhere('f.parent_id = :id')
+                ->setParameter('id', $parendId);
+        } else {
+            $queryBuilder->andWhere('f.parent_id IS NULL');
+        }
+
+        return $queryBuilder
             ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Folder
