@@ -1,6 +1,6 @@
 import web from 'massive-web';
 import $ from 'jquery';
-// import Dropzone from 'Dropzone';
+import Dropzone from 'Dropzone';
 
 
 /**
@@ -16,8 +16,10 @@ class Upload {
         this.$el = $el;
         this.$document = $(document);
 
+        this.classDropzoneFrom = 'js-dropzone';
 
         this.bindListeners();
+        this.onReady();
     }
 
     /**
@@ -25,6 +27,16 @@ class Upload {
      */
     bindListeners() {
         console.log('Upload starting');
+    }
+
+    /**
+     * Ready.
+     */
+    onReady() {
+        Dropzone.autoDiscover = false;
+        let myDropzone = new Dropzone("." + this.classDropzoneFrom, {
+            url: "/api/media/add"
+        });
     }
 }
 
