@@ -10,7 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
 
 /***
- * Moviecontroller.
+ * Media.
+ *
  * @Route("/api", name="api_")
  */
 class MediaController extends AbstractFOSRestController
@@ -19,7 +20,6 @@ class MediaController extends AbstractFOSRestController
      * Upload media.
      *
      * @Rest\Get("/media/upload")
-     *
      */
     public function uploadAction(Request $request)
     {
