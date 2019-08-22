@@ -32,6 +32,11 @@
                     <!-- /.box-header -->
 
                     <div class="box-body">
+                        <div id="{{ register_component('upload') }}" class="media-index-upload">
+                            <div class="dropzone js-dropzone">
+                            </div>
+                        </div>
+
                         {% if 0 < folders|length %}
                             <div class="media-index-content">
                                 <h4 class="box-title">Folders</h4>

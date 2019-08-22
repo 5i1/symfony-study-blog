@@ -15,5 +15,5 @@ require('admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll');
 require('admin-lte/bower_components/fastclick/lib/fastclick.js');
 require('admin-lte/dist/js/adminlte.min');
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-const $ = require('jquery');
+// Import components.
+import './admin/components/upload';
