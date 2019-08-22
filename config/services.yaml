@@ -31,3 +31,6 @@ services:
 
     Massive\Component\Web\ComponentTwigExtension:
         tags: ['twig.extension']
+
+    sensio_framework_extra.view.listener:
+        alias: Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener
