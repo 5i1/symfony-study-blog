@@ -60,7 +60,11 @@
                                     {% for media in medias %}
                                         <div class="col-xs-12 col-md-3">
                                             <div class="thumbnail">
-                                                <img src="{{ asset(media.file)|imagine_filter('300x300') }} "
+                                                {% set image = media.file %}
+                                                {% if not media.external %}
+                                                    {% set image = asset(media.file)|imagine_filter('300x300') %}
+                                                {% endif %}
+                                                <img src="{{ image }} "
                                                      alt="{{ media.title }}"
                                                      class="img-responsive">
                                                 <div class="caption">

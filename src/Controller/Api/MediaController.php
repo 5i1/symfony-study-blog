@@ -30,6 +30,7 @@ class MediaController extends AbstractController
      * MediaController constructor.
      *
      * @param UploaderHelper $uploaderHelper
+     * @param EntityManagerInterface $entityManager
      */
     public function __construct(
         UploaderHelper $uploaderHelper,
