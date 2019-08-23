@@ -32,7 +32,7 @@
                     <!-- /.box-header -->
 
                     <div class="box-body">
-                        <div id="{{ register_component('upload') }}" class="media-index-upload">
+                        <div id="{{ register_component('upload', {folderId: app.request.query.get('folder')}) }}" class="media-index-upload">
                             <div class="dropzone js-dropzone">
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                     {% for media in medias %}
                                         <div class="col-xs-12 col-md-3">
                                             <div class="thumbnail">
-                                                <img src="{{ media.file }}"
+                                                <img src="{{ asset(media.file)|imagine_filter('300x300') }} "
                                                      alt="{{ media.title }}"
                                                      class="img-responsive">
                                                 <div class="caption">

@@ -63,7 +63,7 @@ class UserController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $userForm['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
+                $newFilename = $uploaderHelper->uploadMedia($uploadedFile);
                 $user->setUrlAvatar($newFilename);
             }
 
@@ -103,7 +103,7 @@ class UserController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $userForm['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
+                $newFilename = $uploaderHelper->uploadMedia($uploadedFile);
                 $user->setUrlAvatar($newFilename);
             }
 

@@ -6,16 +6,19 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploaderHelper
 {
-    private $uploadsPath;
+    private $uploadsMediaPath;
+    private $projectDir;
 
-    public function __construct(string $uploadsPath)
+    public function __construct(string $uploadsMediaPath, string $projectDir)
     {
-        $this->uploadsPath = $uploadsPath;
+        $this->uploadsMediaPath = $uploadsMediaPath;
+        $this->projectDir = $projectDir;
     }
 
-    public function uploadImage(UploadedFile $uploadedFile): string
+    public function uploadMedia(UploadedFile $uploadedFile): string
     {
-        $destination = $this->uploadsPath.'/image';
+        $mediaPath = $this->uploadsMediaPath . '/'. date('Y') . '/' . date('m');
+        $destination = $this->projectDir . '/public/' . $mediaPath;
 
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
 
@@ -26,6 +29,6 @@ class UploaderHelper
             $newFilename
         );
 
-        return $newFilename;
+        return $mediaPath . '/' . $newFilename;
     }
 }

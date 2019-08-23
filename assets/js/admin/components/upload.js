@@ -11,10 +11,12 @@ class Upload {
      * Initialize component.
      *
      * @param {Object} $el
+     * @param {Object} options
      */
-    initialize($el) {
+    initialize($el, options) {
         this.$el = $el;
         this.$document = $(document);
+        this.options = options;
 
         this.classDropzoneFrom = 'js-dropzone';
 
@@ -25,9 +27,7 @@ class Upload {
     /**
      * Binds event listeners.
      */
-    bindListeners() {
-        console.log('Upload starting');
-    }
+    bindListeners() {  }
 
     /**
      * Ready.
@@ -35,7 +35,11 @@ class Upload {
     onReady() {
         Dropzone.autoDiscover = false;
         let myDropzone = new Dropzone("." + this.classDropzoneFrom, {
-            url: "/api/media/add"
+            url: "/api/media/upload"
+        });
+
+        myDropzone.on('sending', (file, xhr, formData) => {
+            formData.append('folderId', this.options.folderId);
         });
     }
 }
