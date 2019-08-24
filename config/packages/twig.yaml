@@ -9,3 +9,4 @@ twig:
         github_url:    '%env(GITHUB_URL)%'
         linkedin_url:  '%env(LINKEDIN_URL)%'
         name_site:     '%env(APP_NAME)%'
+        base_url:      '%env(BASE_URL)%'

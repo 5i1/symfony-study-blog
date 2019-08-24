@@ -86,8 +86,11 @@
                                         <div class="col-xs-12 col-md-3">
                                             <div class="thumbnail">
                                                 {% set image = media.file %}
+                                                {% set fullUrl = media.file %}
+
                                                 {% if not media.external %}
                                                     {% set image = asset(media.file)|imagine_filter('300x300') %}
+                                                    {% set fullUrl = base_url ~ '/' ~ media.file %}
                                                 {% endif %}
                                                 <img src="{{ image }} "
                                                      alt="{{ media.title }}"
@@ -95,8 +98,13 @@
                                                 <div class="caption">
                                                     <h4>{{ media.title }}</h4>
                                                     <p>
-                                                        <a href="#" class="btn btn-xs btn-default" role="button"><i class="fa fa-edit"></i> Edit</a>
-                                                        <a href="#" class="btn btn-xs btn-danger" role="button"><i class="fa fa-trash"></i> Delete</a>
+                                                        <button id="{{ register_component('clipboard') }}"
+                                                                class="btn btn-xs btn-default"
+                                                                role="button"
+                                                                data-text-copy="{{ fullUrl }}">
+                                                            <i class="fa fa-link" aria-hidden="true"></i>
+                                                            <span class="js-text-clipboard">Copy URL</span>
+                                                        </button>
                                                     </p>
                                                 </div>
                                             </div>

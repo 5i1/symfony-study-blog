@@ -16,4 +16,5 @@ require('admin-lte/bower_components/fastclick/lib/fastclick.js');
 require('admin-lte/dist/js/adminlte.min');
 
 // Import components.
+import './components/clipboard';
 import './admin/components/upload';
