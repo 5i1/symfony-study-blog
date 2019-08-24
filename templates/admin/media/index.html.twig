@@ -87,6 +87,7 @@
                                             <div class="thumbnail">
                                                 {% set image = media.file %}
                                                 {% set fullUrl = media.file %}
+
                                                 {% if not media.external %}
                                                     {% set image = asset(media.file)|imagine_filter('300x300') %}
                                                     {% set fullUrl = base_url ~ '/' ~ media.file %}
