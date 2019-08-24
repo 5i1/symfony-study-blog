@@ -55,8 +55,8 @@ class PostController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $postForm['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
-                $post->setUrlPhoto($newFilename);
+                $newFile = $uploaderHelper->uploadMedia($uploadedFile);
+                $post->setUrlPhoto($newFile['file']);
             }
 
             // Set some others information of post.
@@ -104,8 +104,8 @@ class PostController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $postForm['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
-                $post->setUrlPhoto($newFilename);
+                $newFile = $uploaderHelper->uploadMedia($uploadedFile);
+                $post->setUrlPhoto($newFile['file']);
             }
 
             // To save.

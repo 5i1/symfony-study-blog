@@ -1,0 +1,147 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    {% set currentFolderId = app.request.query.get('folder') %}
+    <section class="content-header">
+        <h1>
+            All media
+            <small>preview of folders</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Media</li>
+        </ol>
+    </section>
+
+    <section class="content content-media-index">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        {% if 0 < parentFolders|length %}
+                            <h3 class="box-title">
+                                <ol class="breadcrumb breadcrumb--without-bg">
+                                    <li>
+                                        <a href="{{ path('admin_media_index') }}">
+                                            <i class="fa fa-home" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    {% for folder in parentFolders %}
+                                        <li>
+                                            {% if currentFolderId == folder.id %}
+                                                {{ folder.name }}
+                                            {% else %}
+                                                <a href="{{ path('admin_media_index', {folder: folder.id}) }}">
+                                                    {{ folder.name }}
+                                                </a>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ol>
+                            </h3>
+                        {% endif %}
+
+                        <div class="box-tools">
+                            <form class="form-inline">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="q" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+
+                    <div class="box-body">
+                        <div class="media-index-content">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-upload">
+                                Upload File <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        {% if 0 < folders|length %}
+                            <div class="media-index-content">
+                                <h4 class="box-title">Folders</h4>
+                                <div class="row">
+                                    {% for folder in folders %}
+                                        <div class="col-xs-6 col-md-2">
+                                            <a href="{{ path('admin_media_index', {folder: folder.id}) }}" class="btn btn-app media-index-btn-folder">
+                                                <!--span class="badge bg-yellow">3</span-->
+                                                <i class="fa fa-folder"></i> {{ folder.name }}
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if 0 < medias|length %}
+                            <div class="media-index-content">
+                                <h4 class="box-title">Files</h4>
+                                <div class="row">
+                                    {% for media in medias %}
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="thumbnail">
+                                                {% set image = media.file %}
+                                                {% if not media.external %}
+                                                    {% set image = asset(media.file)|imagine_filter('300x300') %}
+                                                {% endif %}
+                                                <img src="{{ image }} "
+                                                     alt="{{ media.title }}"
+                                                     class="img-responsive media-index-file-preview">
+                                                <div class="caption">
+                                                    <h4>{{ media.title }}</h4>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default" role="button"><i class="fa fa-edit"></i> Edit</a>
+                                                        <a href="#" class="btn btn-xs btn-danger" role="button"><i class="fa fa-trash"></i> Delete</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade js-modal-upload" id="modal-upload">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h4 class="modal-title">Upload</h4>
+                </div>
+
+                <div class="modal-body">
+                    {% set uploadComponent = register_component('upload', {
+                        folderId: currentFolderId
+                    }) %}
+
+                    <div id="{{ uploadComponent }}" class="media-index-upload">
+                        <div class="dropzone js-dropzone">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger js-modal-close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+{% endblock %}

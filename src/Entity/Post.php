@@ -179,7 +179,7 @@ class Post
 
     public function getUrlPhoto(): ?string
     {
-        return 'uploads/image/'.$this->url_photo;
+        return $this->url_photo;
     }
 
     public function setUrlPhoto(?string $url_photo): self

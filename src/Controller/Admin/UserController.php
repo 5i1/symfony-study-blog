@@ -63,8 +63,8 @@ class UserController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $userForm['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
-                $user->setUrlAvatar($newFilename);
+                $newFile = $uploaderHelper->uploadMedia($uploadedFile);
+                $user->setUrlAvatar($newFile['file']);
             }
 
             $user->setRoles(['ROLE_ADMIN']);
@@ -103,8 +103,8 @@ class UserController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $userForm['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
-                $user->setUrlAvatar($newFilename);
+                $newFile = $uploaderHelper->uploadMedia($uploadedFile);
+                $user->setUrlAvatar($newFile['file']);
             }
 
             // To save.

@@ -46,8 +46,6 @@ class PagesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-
             // Get data of form.
             $user = $form->getData();
 
@@ -60,8 +58,8 @@ class PagesController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $form['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadImage($uploadedFile);
-                $user->setUrlAvatar($newFilename);
+                $newFile = $uploaderHelper->uploadMedia($uploadedFile);
+                $user->setUrlAvatar($newFile['file']);
             }
 
             $user->setRoles(['ROLE_ADMIN']);
