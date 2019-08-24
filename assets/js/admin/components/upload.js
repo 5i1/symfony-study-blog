@@ -31,9 +31,7 @@ class Upload {
     /**
      * Binds event listeners.
      */
-    bindListeners() {
-
-    }
+    bindListeners() {  }
 
     /**
      * Ready.
