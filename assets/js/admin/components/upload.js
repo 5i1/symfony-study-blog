@@ -1,6 +1,7 @@
 import web from 'massive-web';
 import $ from 'jquery';
 import Dropzone from 'Dropzone';
+import 'bootstrap-sass';
 
 
 /**
@@ -11,11 +12,16 @@ class Upload {
      * Initialize component.
      *
      * @param {Object} $el
+     * @param {Object} options
      */
-    initialize($el) {
+    initialize($el, options) {
         this.$el = $el;
         this.$document = $(document);
+        this.options = options;
 
+        this.$modal = this.$document.find('.js-modal-upload');
+
+        // Class.
         this.classDropzoneFrom = 'js-dropzone';
 
         this.bindListeners();
@@ -25,9 +31,7 @@ class Upload {
     /**
      * Binds event listeners.
      */
-    bindListeners() {
-        console.log('Upload starting');
-    }
+    bindListeners() {  }
 
     /**
      * Ready.
@@ -35,7 +39,34 @@ class Upload {
     onReady() {
         Dropzone.autoDiscover = false;
         let myDropzone = new Dropzone("." + this.classDropzoneFrom, {
-            url: "/api/media/add"
+            url: "/api/media/upload"
+        });
+
+        let totalFiles = 0;
+        let completeFiles = 0;
+
+        myDropzone.on('sending', (file, xhr, formData) => {
+            formData.append('folderId', this.options.folderId);
+        });
+
+        myDropzone.on('addedfile', (file) => {
+            totalFiles += 1;
+        });
+
+        myDropzone.on("removed file", (file) => {
+            totalFiles -= 1;
+        });
+
+        myDropzone.on("complete", (file) => {
+            completeFiles += 1;
+
+            if (completeFiles === totalFiles) {
+                totalFiles = 0;
+                completeFiles = 0;
+
+                this.$modal.modal('hide');
+                this.$document.find('.modal-backdrop').last().remove(); // Fix bug.
+            }
         });
     }
 }

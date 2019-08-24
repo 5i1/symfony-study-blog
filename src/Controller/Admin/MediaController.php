@@ -24,13 +24,17 @@ class MediaController extends AbstractController
     public function index(MediaRepository $mediaRepository, FolderRepository $folderRepository, Request $request)
     {
         $folderId = $request->query->get('folder');
+        $parentFolders = $folderRepository->findParentFolders($folderId);
 
         $medias = $mediaRepository->findByFolderId($folderId);
         $folders = $folderRepository->findByParentId($folderId);
 
+        dump($parentFolders);
+
         return $this->render('admin/media/index.html.twig', [
             'medias' => $medias,
-            'folders' => $folders
+            'folders' => $folders,
+            'parentFolders' => $parentFolders
         ]);
     }
 }

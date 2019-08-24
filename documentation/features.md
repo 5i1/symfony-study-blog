@@ -5,7 +5,8 @@
 [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) (Paginator)  
 [LiipImagineBundle](https://github.com/liip/LiipImagineBundle) (Thumbnail Images)  
 [Slugify](https://github.com/cocur/slugify) (Generate Slug Text)  
-[Twig Extension](https://github.com/massiveart/web-twig)
+[Twig Extension](https://github.com/massiveart/web-twig)  
+[FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle) (Rapidly develop RESTful API's with Symfony)  
 
 #### Utilites
 [Dummy Image](https://dummyimage.com/) (Image Generator)  

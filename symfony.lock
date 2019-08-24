@@ -154,8 +154,23 @@
     "monolog/monolog": {
         "version": "1.24.0"
     },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6e1f64cc0f55362be49764634e8f14ce34a033c6"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
+    },
     "nikic/php-parser": {
         "version": "v4.2.1"
+    },
+    "ocramius/package-versions": {
+        "version": "1.4.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"

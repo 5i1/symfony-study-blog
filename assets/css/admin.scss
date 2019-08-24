@@ -11,4 +11,8 @@
 //@import "~admin-lte/build/less/AdminLTE.less";
 
 // Import own css.
+@import 'admin/base/variables';
+@import 'admin/base/mixins';
+@import 'admin/base/helpers';
+
 @import 'admin/components/media-index';
