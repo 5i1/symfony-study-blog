@@ -14,9 +14,27 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class MediaTypeRepository extends ServiceEntityRepository
 {
+    private $mimeTypeToSimply = [
+        'image/jpeg' => 'image',
+        'image/jpg' => 'image',
+        'image/png' => 'image',
+        'image/gif' => 'image',
+        'application/pdf' => 'pdf',
+        ];
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, MediaType::class);
+    }
+
+    public function findOneByMimeType($mimeType): ?MediaType
+    {
+        return $this->createQueryBuilder('mt')
+            ->andWhere('mt.slug = :val')
+            ->setParameter('val', $this->mimeTypeToSimply[$mimeType] )
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
     }
 
     // /**

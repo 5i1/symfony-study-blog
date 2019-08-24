@@ -58,8 +58,8 @@ class PagesController extends AbstractController
             // Send an image file an store in /public.
             $uploadedFile = $form['imageFile']->getData();
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadMedia($uploadedFile);
-                $user->setUrlAvatar($newFilename);
+                $newFile = $uploaderHelper->uploadMedia($uploadedFile);
+                $user->setUrlAvatar($newFile['file']);
             }
 
             $user->setRoles(['ROLE_ADMIN']);

@@ -5,6 +5,7 @@ namespace App\Controller\Api;
 use App\Entity\Media;
 use App\Entity\MediaType;
 use App\Entity\Folder;
+use App\Repository\PostRepository;
 use App\Service\UploaderHelper;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\MediaTypeRepository;
 use Symfony\Component\Validator\Constraints\Date;
 
 class MediaController extends AbstractController
@@ -55,22 +57,26 @@ class MediaController extends AbstractController
         $file = $request->files->get('file');
 
         if ($file instanceof UploadedFile) {
-            $newFile = $this->uploaderHelper->uploadMedia($file);
+
+            /** @var String[] $uploadMedia */
+            $uploadMedia = $this->uploaderHelper->uploadMedia($file);
             $message = 'Upload successfully';
             $success = true;
 
             /** @var Media $media */
             $media = new Media();
-            $media->setFile($newFile);
+            $media->setTitle($uploadMedia['name']);
+            $media->setFile($uploadMedia['file']);
             $media->setExternal(false);
             $media->setCreated(new \DateTime());
 
-            // TODO: Insert correctly media type.
+            /** @var MediaType $type */
             $type = $this->entityManager
                 ->getRepository(MediaType::class)
-                ->find(1);
+                ->findOneByMimeType($file->getClientMimeType());
             $media->setType($type);
 
+            /** @var Folder $folder */
             $folder = $this->entityManager
                 ->getRepository(Folder::class)
                 ->find($request->request->get('folderId'));
@@ -84,7 +90,7 @@ class MediaController extends AbstractController
         $response->setData([
             'success' => $success,
             'message' => $message,
-            'media' => $newFile,
+            'media' => $uploadMedia['file'],
             'errors' => $errors
         ]);
 

@@ -3,6 +3,8 @@ namespace App\Service;
 
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class UploaderHelper
 {
@@ -15,7 +17,14 @@ class UploaderHelper
         $this->projectDir = $projectDir;
     }
 
-    public function uploadMedia(UploadedFile $uploadedFile): string
+    /**
+     * Make upload any file and set in uploads folder.
+     *
+     * @param UploadedFile $uploadedFile
+     *
+     * @return String[]
+     */
+    public function uploadMedia(UploadedFile $uploadedFile): array
     {
         $mediaPath = $this->uploadsMediaPath . '/'. date('Y') . '/' . date('m');
         $destination = $this->projectDir . '/public/' . $mediaPath;
@@ -29,6 +38,9 @@ class UploaderHelper
             $newFilename
         );
 
-        return $mediaPath . '/' . $newFilename;
+        return [
+            'file' => $mediaPath . '/' . $newFilename,
+            'name' => $newFilename
+        ];
     }
 }
