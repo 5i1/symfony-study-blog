@@ -37,7 +37,7 @@ class MediaRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder
-            ->orderBy('m.id', 'ASC')
+            ->orderBy('m.id', 'DESC')
             ->getQuery()
             ->getResult();
     }

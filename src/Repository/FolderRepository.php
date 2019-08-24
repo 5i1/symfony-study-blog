@@ -42,6 +42,32 @@ class FolderRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Return all subfolders.
+     *
+     * @param integer $folderId
+     * @return String[]|null
+     */
+
+    public function findParentFolders($folderId)
+    {
+        if(!$folderId){
+            return false;
+        }
+
+        $folders = [];
+
+        do {
+            $folder = $this->find($folderId);
+
+            $folders[] = $folder;
+            $folderId = $folder->getParentId();
+
+        } while (0 < $folderId);
+
+        return array_reverse($folders);
+    }
+
     /*
     public function findOneBySomeField($value): ?Folder
     {
