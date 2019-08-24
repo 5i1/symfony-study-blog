@@ -23,7 +23,7 @@
                                 <ol class="breadcrumb breadcrumb--without-bg">
                                     <li>
                                         <a href="{{ path('admin_media_index') }}">
-                                            Root
+                                            <i class="fa fa-home" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     {% for folder in parentFolders %}
@@ -91,7 +91,7 @@
                                                 {% endif %}
                                                 <img src="{{ image }} "
                                                      alt="{{ media.title }}"
-                                                     class="img-responsive">
+                                                     class="img-responsive media-index-file-preview">
                                                 <div class="caption">
                                                     <h4>{{ media.title }}</h4>
                                                     <p>
