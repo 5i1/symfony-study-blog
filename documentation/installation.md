@@ -110,6 +110,7 @@ FACEBOOK_URL='https://www.facebook.com'
 INSTAGRAM_URL='https://www.instagram.com'
 GITHUB_URL='https://github.com'
 LINKEDIN_URL='https://www.linkedin.com'
+BASE_URL='http://localhost:8000'
 
 ```
 Obs: You can just make an copy from `.env.test` file and configure your own environment.
@@ -129,7 +130,22 @@ sudo chmod -R 777 public/uploads
 mkdir public/media
 sudo chmod -R 777 public/media
 ```
-    
+
+#### Parameters
+
+The default parameters are defined in the [.env](../.env) file.  
+If you need to change some variables, simply create a `.env.prod` or other way for your environment production.
+  
+This could look similar to this:
+
+```text
+APP_NAME='Project'
+FACEBOOK_URL='https://www.facebook.com/thomas.kanzig'
+INSTAGRAM_URL='https://www.instagram.com/thomas.kanzig/'
+GITHUB_URL='https://github.com/thomaskanzig'
+LINKEDIN_URL='https://www.linkedin.com/in/thomas-kanzig-b1018a116/'
+BASE_URL='http://localhost:8000'
+```
 
 That's all.
 
