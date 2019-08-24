@@ -64,10 +64,17 @@ class Upload {
                 totalFiles = 0;
                 completeFiles = 0;
 
-                this.$modal.modal('hide');
-                this.$document.find('.modal-backdrop').last().remove(); // Fix bug.
+                location.reload();
             }
         });
+    }
+
+    /**
+     * Close modal.
+     */
+    closeModal() {
+        this.$modal.modal('hide');
+        this.$document.find('.modal-backdrop').last().remove(); // Fix bug.
     }
 }
 
