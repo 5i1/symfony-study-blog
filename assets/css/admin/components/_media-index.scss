@@ -15,5 +15,21 @@
 }
 
 .media-index-content {
-    margin-bottom: 20px;
+    margin-bottom: 0;
+}
+
+.media-index-add-folder {
+    padding-top: 10px;
+    height: 0px;
+    overflow: hidden;
+
+    &.open {
+        height: auto;
+    }
+}
+
+.media-index-folder {
+    &.copy {
+        display: none;
+    }
 }

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190820203518 extends AbstractMigration
+final class Version20190825154518 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,7 @@ final class Version20190820203518 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE media ADD external TINYINT(1) DEFAULT \'0\' NOT NULL');
+        $this->addSql('ALTER TABLE folder ADD slug VARCHAR(255) NOT NULL, CHANGE active active TINYINT(1) DEFAULT \'1\' NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +30,6 @@ final class Version20190820203518 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE media DROP external');
+        $this->addSql('ALTER TABLE folder DROP slug, CHANGE active active TINYINT(1) DEFAULT \'1\'');
     }
 }

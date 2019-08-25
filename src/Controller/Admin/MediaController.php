@@ -29,8 +29,6 @@ class MediaController extends AbstractController
         $medias = $mediaRepository->findByFolderId($folderId);
         $folders = $folderRepository->findByParentId($folderId);
 
-        dump($parentFolders);
-
         return $this->render('admin/media/index.html.twig', [
             'medias' => $medias,
             'folders' => $folders,
