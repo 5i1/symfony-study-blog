@@ -13,6 +13,8 @@ class Upload {
      *
      * @param {Object} $el
      * @param {Object} options
+     * @param {String} options.csrfToken
+     * @param {Integer} options.folderId
      */
     initialize($el, options) {
         this.$el = $($el);
