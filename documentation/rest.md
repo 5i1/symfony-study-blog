@@ -82,3 +82,47 @@ This document contains all API definitions and their routes.
          "message": "Delete successfully"
      }
     ```
+
+
+**Add folder**
+----
+      
+* **URL**
+
+    /api/folder
+
+* **Method:**
+
+    `POST`
+  
+* **URL Params**
+
+    None
+
+* **Data Params**
+
+    **Required:**
+    
+    `name=[string]`
+    
+    `token=[string]`
+
+    **Optional:**
+    
+    `parentId=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200  
+    **Content:** 
+    
+    ```bash
+    {
+         "success": true, 
+         "message": "Folder created successfully",
+         "folder": {
+            "id": 1,
+            "name": "Name Folder"
+         }
+     }
+    ```
