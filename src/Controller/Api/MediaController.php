@@ -148,8 +148,7 @@ class MediaController extends AbstractController
         $response = new JsonResponse();
         $response->setData([
             'success' => $success,
-            'message' => $message,
-            'valid' => $this->isCsrfTokenValid('media', $submittedToken)
+            'message' => $message
         ]);
 
         return $response;
