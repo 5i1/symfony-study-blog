@@ -37,7 +37,7 @@ class FolderRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder
-            ->orderBy('f.id', 'ASC')
+            ->orderBy('f.id', 'DESC')
             ->getQuery()
             ->getResult();
     }
