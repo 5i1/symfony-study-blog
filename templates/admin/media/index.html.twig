@@ -2,6 +2,7 @@
 
 {% block body %}
     {% set currentFolderId = app.request.query.get('folder') %}
+    {% set csrfToken = csrf_token('media') %}
     <section class="content-header">
         <h1>
             All media
@@ -13,7 +14,11 @@
         </ol>
     </section>
 
-    <section class="content content-media-index">
+    {% set mediaComponent = register_component('media', {
+        csrfToken: csrfToken
+    }) %}
+
+    <section id="{{ mediaComponent }}" class="content content-media-index">
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -83,7 +88,8 @@
                                 <h4 class="box-title">Files</h4>
                                 <div class="row">
                                     {% for media in medias %}
-                                        <div class="col-xs-12 col-md-3">
+                                        <div class="col-xs-12 col-md-3 js-media-file"
+                                             data-id="{{ media.id }}">
                                             <div class="thumbnail">
                                                 {% set image = media.file %}
                                                 {% set fullUrl = media.file %}
@@ -104,6 +110,12 @@
                                                                 data-text-copy="{{ fullUrl }}">
                                                             <i class="fa fa-link" aria-hidden="true"></i>
                                                             <span class="js-text-clipboard">Copy URL</span>
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger js-media-file-delete"
+                                                                role="button">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            Delete
                                                         </button>
                                                     </p>
                                                 </div>
@@ -135,7 +147,7 @@
                 <div class="modal-body">
                     {% set uploadComponent = register_component('upload', {
                         folderId: currentFolderId,
-                        csrfToken: csrf_token('media-upload')
+                        csrfToken: csrfToken
                     }) %}
 
                     <div id="{{ uploadComponent }}" class="media-index-upload">

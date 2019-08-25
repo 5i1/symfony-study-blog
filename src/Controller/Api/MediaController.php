@@ -49,6 +49,8 @@ class MediaController extends AbstractController
      * @param Request $request
      *
      * @return JsonResponse
+     *
+     * @throws InvalidCsrfTokenException if the provided argument token is invalid.
      */
     public function uploadAction(Request $request): JsonResponse
     {
@@ -59,7 +61,7 @@ class MediaController extends AbstractController
         $file = $request->files->get('file');
         $submittedToken = $request->request->get('token');
 
-        if (!$this->isCsrfTokenValid('media-upload', $submittedToken)) {
+        if (!$this->isCsrfTokenValid('media', $submittedToken)) {
             throw new InvalidCsrfTokenException();
         }
 
@@ -99,6 +101,55 @@ class MediaController extends AbstractController
             'message' => $message,
             'media' => $uploadMedia['file'],
             'errors' => $errors
+        ]);
+
+        return $response;
+    }
+
+    /**
+     * @Route("/api/media/delete", name="api_media_delete", methods={"DELETE"})
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     *
+     * @throws InvalidCsrfTokenException if the provided argument token is invalid.
+     */
+    public function deleteAction(Request $request): JsonResponse
+    {
+        $success = false;
+        $message = 'Delete failed.';
+
+        $mediaId = $request->request->get('mediaId');
+        $submittedToken = $request->request->get('token');
+
+        if (!$this->isCsrfTokenValid('media', $submittedToken)) {
+            throw new InvalidCsrfTokenException();
+        }
+
+        if ($mediaId) {
+            /** @var Media $media */
+            $media = $this->entityManager
+                ->getRepository(Media::class)
+                ->find($mediaId);
+
+            $this->entityManager->remove($media);
+            $this->entityManager->flush();
+
+            // When not external then will delete this file.
+            if(!$media->getExternal()){
+                $this->uploaderHelper->deleteFile($media->getFile(), false);
+            }
+
+            $message = 'Delete successfully';
+            $success = true;
+        }
+
+        $response = new JsonResponse();
+        $response->setData([
+            'success' => $success,
+            'message' => $message,
+            'valid' => $this->isCsrfTokenValid('media', $submittedToken)
         ]);
 
         return $response;

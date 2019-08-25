@@ -12,7 +12,8 @@
 [Dummy Image](https://dummyimage.com/) (Image Generator)  
 [CKEditor4](https://ckeditor5.github.io/) (CKEditor4, Follow the [documentation](https://ckeditor.com/docs/ckeditor4/latest/guide/dev_installation.html))  
 [Favicon Generator](https://favicon.io/) (Create a favicon in few simple clicks.)  
-[Dropzone.js](https://gitlab.com/meno/dropzone) (Dropzone is for upload files)
+[Dropzone.js](https://gitlab.com/meno/dropzone) (Dropzone is for upload files.)  
+[PHPDoc](https://docs.phpdoc.org/) (For good practice code.)
 
 #### By coding
 
