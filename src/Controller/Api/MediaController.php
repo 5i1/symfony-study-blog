@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\MediaTypeRepository;
 use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 
 class MediaController extends AbstractController
 {
@@ -53,8 +54,14 @@ class MediaController extends AbstractController
     {
         $success = false;
         $errors = [];
-        $message = 'Upload failed. Please try again.';
+        $message = 'Upload failed.';
+
         $file = $request->files->get('file');
+        $submittedToken = $request->request->get('token');
+
+        if (!$this->isCsrfTokenValid('media-upload', $submittedToken)) {
+            throw new InvalidCsrfTokenException();
+        }
 
         if ($file instanceof UploadedFile) {
 
