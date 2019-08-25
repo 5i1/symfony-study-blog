@@ -134,7 +134,8 @@
 
                 <div class="modal-body">
                     {% set uploadComponent = register_component('upload', {
-                        folderId: currentFolderId
+                        folderId: currentFolderId,
+                        csrfToken: csrf_token('media-upload')
                     }) %}
 
                     <div id="{{ uploadComponent }}" class="media-index-upload">

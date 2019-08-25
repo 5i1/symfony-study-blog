@@ -15,7 +15,7 @@ class Upload {
      * @param {Object} options
      */
     initialize($el, options) {
-        this.$el = $el;
+        this.$el = $($el);
         this.$document = $(document);
         this.options = options;
 
@@ -47,6 +47,7 @@ class Upload {
 
         myDropzone.on('sending', (file, xhr, formData) => {
             formData.append('folderId', this.options.folderId);
+            formData.append('token', this.options.csrfToken);
         });
 
         myDropzone.on('addedfile', (file) => {
