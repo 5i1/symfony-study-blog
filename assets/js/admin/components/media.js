@@ -1,5 +1,6 @@
 import web from 'massive-web';
 import $ from 'jquery';
+import 'bootstrap-sass';
 
 /**
  * Media component.
@@ -10,6 +11,7 @@ class Media {
      *
      * @param {Object} $el
      * @param {Object} options
+     * @param {Integer} options.currentFolderId
      * @param {String} options.csrfToken
      */
     initialize($el, options) {
@@ -29,6 +31,11 @@ class Media {
         this.$folderCopy = this.$el.find('.js-media-index-folder.copy');
         this.$folder = this.$el.find('.js-media-index-folder');
 
+        //Folder (delete).
+        this.$modalDeleteFolder = this.$el.find('.js-modal-delete-folder');
+        this.$openModalDeleteFolder = this.$el.find('.js-open-modal-delete-folder');
+        this.$deleteFolder = this.$el.find('.js-delete-folder');
+
         //Class.
         this.classOpen = 'open';
         this.classCopy = 'copy';
@@ -44,6 +51,8 @@ class Media {
         this.$mediaFileDelete.on('click', this.onMediaFileDelete.bind(this));
         this.$addFolder.on('click', this.onTogglerFormAddFolder.bind(this));
         this.$formAddFolder.on('submit', this.onFormAddFolderSubmit.bind(this));
+        this.$openModalDeleteFolder.on('click', this.onOpenDeleteFolder.bind(this));
+        this.$deleteFolder.on('click', this.onDeleteFolder.bind(this));
     }
 
     /**
@@ -151,6 +160,54 @@ class Media {
         let $link = $folder.find('.js-media-index-folder-link');
         let $linkHref = $link.attr('href');
         $link.attr('href', $linkHref + '?folder=' + data.folder.id);
+    }
+
+    /**
+     * Modal confirm delete folder.
+     *
+     * @param {Object} e
+     */
+    onOpenDeleteFolder(e) {
+        this.$modalDeleteFolder.modal('show');
+    }
+
+    /**
+     * Delete folder.
+     *
+     * @param {Object} e
+     */
+    onDeleteFolder(e) {
+        console.log('onDeleteFolder');
+        let $btnFileDelete = $(e.currentTarget);
+
+        let objData = {
+            'id': this.options.currentFolderId,
+            'token': this.options.csrfToken
+        };
+
+        let btnText = $btnFileDelete.html();
+        $btnFileDelete.html('Deleting...');
+
+        $.ajax({
+            url: '/api/folder/delete',
+            data: objData,
+            type: 'DELETE',
+            contentType: 'application/x-www-form-urlencoded',
+            error: (data) => {
+                /* eslint-disable */
+                console.error(data);
+                /* eslint-enable */
+
+                $btnFileDelete.html(btnText);
+            },
+            success: (data) => {
+                if (data.success) {
+                   //TODO: Insert here the link of media page admin.
+                } else {
+                    $btnFileDelete.html(btnText);
+                }
+            }
+        });
     }
 }
 

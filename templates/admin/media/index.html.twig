@@ -3,6 +3,7 @@
 {% block body %}
     {% set currentFolderId = app.request.query.get('folder') %}
     {% set csrfToken = csrf_token('media') %}
+
     <section class="content-header">
         <h1>
             All media
@@ -15,7 +16,8 @@
     </section>
 
     {% set mediaComponent = register_component('media', {
-        csrfToken: csrfToken
+        csrfToken: csrfToken,
+        currentFolderId: currentFolderId
     }) %}
 
     <section id="{{ mediaComponent }}" class="content content-media-index">
@@ -69,6 +71,13 @@
                             <button type="button" class="btn btn-default js-media-add-folder">
                                 Add Folder <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             </button>
+
+                            {% if 0 < currentFolderId %}
+                                <button type="button"
+                                        class="btn btn-danger js-open-modal-delete-folder">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Delete Folder
+                                </button>
+                            {% endif %}
 
                             <div class="row media-index-add-folder js-content-form-add-folder">
                                 <div class="col-sm-6 col-md-4">
@@ -171,6 +180,39 @@
                 <span class="js-media-index-folder-name"></span>
             </a>
         </div>
+
+        <div class="modal fade js-modal-delete-folder" id="modal-confirm-delete-folder">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <h4 class="modal-title">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Alert
+                        </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        Do you really delete this folder?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <i class="fa fa-close" aria-hidden="true"></i> Cancel
+                        </button>
+
+                        <button type="button" class="btn btn-success js-delete-folder">
+                            Yes, delete now!
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
     </section>
 
     <div class="modal fade js-modal-upload" id="modal-upload">
