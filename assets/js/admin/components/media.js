@@ -13,6 +13,7 @@ class Media {
      * @param {Object} options
      * @param {Integer} options.currentFolderId
      * @param {String} options.csrfToken
+     * @param {String} options.indexPage
      */
     initialize($el, options) {
         this.$el = $($el);
@@ -97,7 +98,15 @@ class Media {
     }
 
     onTogglerFormAddFolder() {
-        this.$contentFormAddFolder.toggleClass(this.classOpen);
+
+        const $formAddFolder = this.$contentFormAddFolder;
+        $formAddFolder.toggleClass(this.classOpen);
+
+        if(0 < $formAddFolder.filter('.' + this.classOpen).length) {
+            this.$contentFormAddFolder
+                .find('[name=name]')
+                .trigger('focus');
+        }
     }
 
     /**
@@ -177,7 +186,6 @@ class Media {
      * @param {Object} e
      */
     onDeleteFolder(e) {
-        console.log('onDeleteFolder');
         let $btnFileDelete = $(e.currentTarget);
 
         let objData = {
@@ -202,7 +210,7 @@ class Media {
             },
             success: (data) => {
                 if (data.success) {
-                   //TODO: Insert here the link of media page admin.
+                    window.location = this.options.indexPage;
                 } else {
                     $btnFileDelete.html(btnText);
                 }

@@ -126,3 +126,45 @@ This document contains all API definitions and their routes.
          }
      }
     ```
+
+
+**Delete folder**
+----
+**Attention:**  
+Delete permanently the current folder and all sub folders with files inside.      
+      
+* **URL**
+
+    /api/folder/delete
+
+* **Method:**
+
+    `DELETE`
+  
+* **URL Params**
+
+    None
+
+* **Data Params**
+
+    **Required:**
+    
+    `id=[integer]`
+    
+    `token=[string]`
+
+    **Optional:**
+    
+    None
+
+* **Success Response:**
+
+  * **Code:** 200  
+    **Content:** 
+    
+    ```bash
+    {
+         "success": true, 
+         "message": "Delete successfully"
+     }
+    ```

@@ -17,7 +17,8 @@
 
     {% set mediaComponent = register_component('media', {
         csrfToken: csrfToken,
-        currentFolderId: currentFolderId
+        currentFolderId: currentFolderId,
+        indexPage: path('admin_media_index')
     }) %}
 
     <section id="{{ mediaComponent }}" class="content content-media-index">
@@ -195,7 +196,8 @@
                     </div>
 
                     <div class="modal-body">
-                        Do you really delete this folder?
+                        Do you really delete this folder?<br/>
+                        All children folders and files will deleted permanently.
                     </div>
 
                     <div class="modal-footer">
