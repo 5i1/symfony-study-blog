@@ -131,23 +131,6 @@ mkdir public/media
 sudo chmod -R 777 public/media
 ```
 
-#### Parameters
-
-The default parameters are defined in the [.env](../.env) file.  
-If you need to change some variables, simply create a `.env.prod` or other way for your environment production.
-  
-This could look similar to this:
-
-```text
-APP_NAME='Project'
-FACEBOOK_URL='https://www.facebook.com/thomas.kanzig'
-INSTAGRAM_URL='https://www.instagram.com/thomas.kanzig/'
-GITHUB_URL='https://github.com/thomaskanzig'
-LINKEDIN_URL='https://www.linkedin.com/in/thomas-kanzig-b1018a116/'
-EMAIL='example@email.com'
-BASE_URL='http://localhost:8000'
-```
-
 That's all.
 
 For more information about the web server configuration and how improvement performance, access [here](https://symfony.com/doc/current/setup/web_server_configuration.html).
