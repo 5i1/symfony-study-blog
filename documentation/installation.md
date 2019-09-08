@@ -113,7 +113,7 @@ LINKEDIN_URL='https://www.linkedin.com'
 BASE_URL='http://localhost:8000'
 
 ```
-Obs: You can just make an copy from `.env.test` file and configure your own environment.
+Obs: You can just make an copy from [.env.test](../.env.test) file and configure your own environment.
 
 ##### Create and update the database structure with this:
 ```bash
@@ -144,6 +144,7 @@ FACEBOOK_URL='https://www.facebook.com/thomas.kanzig'
 INSTAGRAM_URL='https://www.instagram.com/thomas.kanzig/'
 GITHUB_URL='https://github.com/thomaskanzig'
 LINKEDIN_URL='https://www.linkedin.com/in/thomas-kanzig-b1018a116/'
+EMAIL='example@email.com'
 BASE_URL='http://localhost:8000'
 ```
 
