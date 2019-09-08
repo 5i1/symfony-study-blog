@@ -94,7 +94,6 @@ You can just make an copy from [.env.test](../.env.test) file and configure your
 To generate the secret key parameter `APP_SECRET` access [here](http://nux.net/secret).
 
 
-
 ##### Install composer (only used the necessary dependences)
 
 ```bash
@@ -118,6 +117,9 @@ yarn encore production
 ```bash
 composer require symfony/apache-pack
 ```
+OBS:  
+By question: *Do you want to execute this recipe?*  You should choice **Yes**
+
 ##### Create and update the database structure with this:
 ```bash
 php bin/console doctrine:database:create
@@ -137,3 +139,26 @@ sudo chmod -R 777 public/media
 That's all.
 
 For more information about the web server configuration and how improvement performance, access [here](https://symfony.com/doc/current/setup/web_server_configuration.html).
+
+## Common Issues
+
+##### 1) Unable to create the cache
+
+In the prod environment it's possible to encountred this error:  
+*PHP Fatal error:  Uncaught RuntimeException: Unable to create the cache directory...*  
+The only thing you need to do is to execute this two commands below:
+```bash
+rm -rf var/cache/*
+php bin/console cache:warmup
+```
+More details see [here](https://symfony.com/doc/current/setup/file_permissions.html)
+
+##### 2) .htaccess is gone. And now?
+For some reason when the `.htaccess` file is gone in your `public/` folder 
+you can generate them again with this three commands below:
+```bash
+composer remove symfony/apache-pack
+composer clearcache
+composer require symfony/apache-pack
+```
+
