@@ -71,6 +71,27 @@ $ php bin/console server:run
 git clone https://github.com/5i1/symfony-study-blog .
 ```
 
+##### Configure your .env
+Exist more way to configure variable in your environment, but the easiest way is just create an simple `.env.local` file and inform all variable you needed.
+
+```bash
+# Config
+APP_ENV=prod
+APP_SECRET=f9c53050608c5d72494b9asdas6e331sda
+DATABASE_URL=mysql://root:12345@127.0.0.1:3306/database_name
+
+# Costum variables
+APP_NAME='Project'
+FACEBOOK_URL='https://www.facebook.com'
+INSTAGRAM_URL='https://www.instagram.com'
+GITHUB_URL='https://github.com'
+LINKEDIN_URL='https://www.linkedin.com'
+BASE_URL='http://localhost:8000'
+
+```
+Obs: You can just make an copy from [.env.test](../.env.test) file and configure your own environment.
+
+
 ##### Install composer (only used the necessary dependences)
 
 ```bash
@@ -94,27 +115,6 @@ yarn encore production
 ```bash
 composer require symfony/apache-pack
 ```
-
-##### Configure your .env
-Exist more way to configure variable in your environment, but the easiest way is just create an simple `.env.local` file and inform all variable you needed.
-
-```bash
-# Config
-APP_ENV=prod
-APP_SECRET=f9c53050608c5d72494b9asdas6e331sda
-DATABASE_URL=mysql://root:12345@127.0.0.1:3306/database_name
-
-# Costum variables
-APP_NAME='Project'
-FACEBOOK_URL='https://www.facebook.com'
-INSTAGRAM_URL='https://www.instagram.com'
-GITHUB_URL='https://github.com'
-LINKEDIN_URL='https://www.linkedin.com'
-BASE_URL='http://localhost:8000'
-
-```
-Obs: You can just make an copy from [.env.test](../.env.test) file and configure your own environment.
-
 ##### Create and update the database structure with this:
 ```bash
 php bin/console doctrine:database:create
