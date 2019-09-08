@@ -89,7 +89,10 @@ LINKEDIN_URL='https://www.linkedin.com'
 BASE_URL='http://localhost:8000'
 
 ```
-Obs: You can just make an copy from [.env.test](../.env.test) file and configure your own environment.
+Obs:  
+You can just make an copy from [.env.test](../.env.test) file and configure your own environment.  
+To generate the secret key parameter `APP_SECRET` access [here](http://nux.net/secret).
+
 
 
 ##### Install composer (only used the necessary dependences)
