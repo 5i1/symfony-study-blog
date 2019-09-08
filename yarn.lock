@@ -2610,13 +2610,6 @@ dot-prop@^4.1.1:
   dependencies:
     is-obj "^1.0.0"
 
-dotdotdot@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/dotdotdot/-/dotdotdot-1.7.0.tgz#5ce3cb562123a244ca2db43e2e8bcb1ea2108d3c"
-  integrity sha1-XOPLViEjokTKLbQ+LovLHqIQjTw=
-  dependencies:
-    jquery ">= 1.4.3"
-
 dropzone@^5.5.1:
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.5.1.tgz#06e2f513e61d6aa363d4b556f18574f47cf7ba26"
@@ -4059,12 +4052,17 @@ jquery-ui@^1.12.1:
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
   integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
 
+jquery.dotdotdot@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/jquery.dotdotdot/-/jquery.dotdotdot-3.2.3.tgz#161ebe467bc4db8ba8d07a18202be0ce3da0a3e5"
+  integrity sha512-VjsZftD2iyEErvkXMfkj3elPv1rAwFioUK/mHiur8zZTRr8dMv2eDluQjFmk+qOHVDLaqgeSHQR7ipq74f4MeA==
+
 jquery@3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
 
-"jquery@>= 1.4.3", jquery@>=1.10, jquery@>=1.5, jquery@>=1.7, "jquery@>=1.7.1 <4.0.0", jquery@>=1.8, jquery@^3.2.1:
+jquery@>=1.10, jquery@>=1.5, jquery@>=1.7, "jquery@>=1.7.1 <4.0.0", jquery@>=1.8, jquery@^3.2.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==

@@ -143,7 +143,11 @@
                                                  alt="{{ media.title }}"
                                                  class="img-responsive media-index-file-preview">
                                             <div class="caption">
-                                                <h4>{{ media.title }}</h4>
+                                                <div id="{{ register_component('dotdotdot') }}"
+                                                     class="media-index-file-name">
+                                                   {{ media.title }}
+                                                </div>
+
                                                 <p>
                                                     <button id="{{ register_component('clipboard') }}"
                                                             class="btn btn-xs btn-default"
