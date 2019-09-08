@@ -1,6 +1,6 @@
 import web from 'massive-web';
 import $ from 'jquery';
-import Dropzone from 'Dropzone';
+import Dropzone from 'dropzone';
 import 'bootstrap-sass';
 
 
