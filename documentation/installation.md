@@ -82,11 +82,14 @@ DATABASE_URL=mysql://root:12345@127.0.0.1:3306/database_name
 
 # Costum variables
 APP_NAME='Project'
+ADMIN_NAME='Admin Project'
+ADMIN_NAME_SIGLA='TKA'
 FACEBOOK_URL='https://www.facebook.com'
 INSTAGRAM_URL='https://www.instagram.com'
 GITHUB_URL='https://github.com'
 LINKEDIN_URL='https://www.linkedin.com'
 BASE_URL='http://localhost:8000'
+APP_VERSION='0.1.0'
 
 ```
 Obs:  
