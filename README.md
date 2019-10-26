@@ -1,18 +1,23 @@
-# Symfony Application Skeleton
+# Blog Personal in Symfony
 
+## 1 Browser Support
 
-## Installation
+- *Internet Explorer 10 or higher.*
+- *Latest versions of Chrome, Firefox, Safari and Windows Edge.*
 
-Install first complete symfony project for website:
-```bash
-composer create-project symfony/website-skeleton my-project
-```
+## 2 Non-functional requirements
 
-Install just minimal symfony project (ex: API):
-```bash
-composer create-project symfony/skeleton my-project
-```
+*Full responsive.*
 
-To install this project, follow [these] steps.(documentation/installation.md)
+## 3 Short description
 
-For generate a secret key and insert it on your environment dev, click [here](http://nux.net/secret)
+*Basic website.*
+
+## 4 Documentation
+
+- [Installation](documentation/installation.md)
+- [Development](documentation/development.md)
+- [Features](documentation/features.md)
+- [Database](documentation/database.md)
+- [RESTful API](documentation/rest.md)
+- [Commands](documentation/commands.md)
