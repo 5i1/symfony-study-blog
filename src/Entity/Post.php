@@ -83,6 +83,12 @@ class Post
      */
     private $active = false;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Template")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $template;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -247,6 +253,18 @@ class Post
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getTemplate(): ?Template
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(?Template $template): self
+    {
+        $this->template = $template;
 
         return $this;
     }
