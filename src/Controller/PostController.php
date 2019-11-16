@@ -9,11 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class BlogController extends AbstractController
+class PostController extends AbstractController
 {
 
     /**
-     * @Route("/", name="blog_index")
+     * @Route("/", name="post_index")
      */
     public function index(PostRepository $repository, Request $request, PaginatorInterface $paginator)
     {
@@ -32,7 +32,7 @@ class BlogController extends AbstractController
         // Get globals variables from twig.
         $twigGlobals = $this->get('twig')->getGlobals();
 
-        return $this->render('blog/index.html.twig', [
+        return $this->render('post/index.html.twig', [
             'posts' => $pagination,
             'metaTitle' => 'Blog - '.$twigGlobals['name_site'],
         ]);
@@ -40,10 +40,11 @@ class BlogController extends AbstractController
 
 
     /**
-     * @Route("/blog/{slug}", name="blog_detail")
+     * @Route("/post/{slug}", name="post_detail")
      */
     public function detail($slug)
     {
+        /** @var Post $post */
         $post = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findOneBy(['slug' => $slug]);
@@ -54,7 +55,7 @@ class BlogController extends AbstractController
             );
         }
 
-        return $this->render('blog/detail.html.twig', [
+        return $this->render($post->getTemplate()->getView(), [
             'post' => $post,
             'metaTitle' => $post->getTitle(),
             'metaDescription' => $post->getDescription(),

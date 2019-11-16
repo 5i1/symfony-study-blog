@@ -36,6 +36,11 @@ class Template
      */
     private $deleted;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $view;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Template
     public function setDeleted(?\DateTimeInterface $deleted): self
     {
         $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    public function getView(): ?string
+    {
+        return $this->view;
+    }
+
+    public function setView(string $view): self
+    {
+        $this->view = $view;
 
         return $this;
     }
