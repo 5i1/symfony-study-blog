@@ -5,8 +5,8 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\User;
+use App\Entity\Template;
 use App\Repository\CategoryRepository;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,11 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class PostType extends AbstractType
@@ -59,6 +55,13 @@ class PostType extends AbstractType
                 'required' => false
             ])
             ->add('published',  DateTimeType::class)
+            ->add('template', EntityType::class, [
+                'label'     => 'Which template?',
+                'class'     => Template::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Select template:',
+                'required' => true
+            ])
         ;
     }
 
