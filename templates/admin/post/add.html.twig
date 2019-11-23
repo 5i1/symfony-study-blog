@@ -17,29 +17,67 @@
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
+                {{ form_start(postForm) }}
+                    <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Template</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ form_row(postForm.template) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Form</h3>
                     </div>
 
-                    {{ form_start(postForm) }}
-                        <div class="box-body">
-                            {{ form_row(postForm.active) }}
-                            {{ form_row(postForm.title) }}
-                            {{ form_row(postForm.description) }}
-                            {{ form_row(postForm.text) }}
-                            {{ form_row(postForm.imageFile) }}
-                            {{ form_row(postForm.categories) }}
-                            {{ form_row(postForm.user) }}
-                            {{ form_row(postForm.published) }}
-                        </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form_row(postForm.active) }}
+                            </div>
 
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Add new post</button>
+                            <div class="col-md-12">
+                                {{ form_row(postForm.title) }}
+                            </div>
+
+                            <div class="col-md-12">
+                                {{ form_row(postForm.description) }}
+                            </div>
+
+                            <div class="col-md-12">
+                                {{ form_row(postForm.text) }}
+                            </div>
+
+                            <div class="col-md-12">
+                                {{ form_row(postForm.imageFile) }}
+                            </div>
+
+                            <div class="col-md-6">
+                                {{ form_row(postForm.categories) }}
+                            </div>
+
+                            <div class="col-md-6">
+                                {{ form_row(postForm.user) }}
+                            </div>
+
+                            <div class="col-md-12">
+                                {{ form_row(postForm.published) }}
+                            </div>
                         </div>
-                    {{ form_end(postForm) }}
+                    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Add new post</button>
+                    </div>
                 </div>
+                {{ form_end(postForm) }}
                 <!-- /.box -->
             </div>
             <!--/.col (left) -->
