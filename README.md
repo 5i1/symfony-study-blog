@@ -1,4 +1,7 @@
-# Blog Personal in Symfony
+# Blog Personal in Symfony [Deprecated]
+
+Attention: 
+This project is Deprecated. Please follow this [link](https://github.com/thomaskanzig/personal-blog) for the current project.
 
 ## 1 Browser Support
 
