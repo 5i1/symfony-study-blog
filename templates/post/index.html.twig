@@ -14,11 +14,14 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <a href="{{ path('post_detail', {slug: post.slug}) }}">
-                                        <img src="{{ asset(post.urlPhoto)|imagine_filter('600x375') }}"
-                                             class="post-image rounded img-fluid mr-3"
-                                             alt="{{ post.title }}">
+                                        {% if post.urlPhoto is not empty %}
+                                            <img src="{{ asset(post.urlPhoto)|imagine_filter('600x375') }}"
+                                                 class="post-image rounded img-fluid mr-3"
+                                                 alt="{{ post.title }}">
+                                        {% endif %}
                                     </a>
                                 </div>
+
                                 <div class="col-md-7">
                                     <a href="{{ path('post_detail', {slug: post.slug}) }}">
                                         <h2 class="post-title">{{ post.title }}</h2>

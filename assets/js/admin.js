@@ -20,3 +20,4 @@ import './components/clipboard';
 import './components/dotdotdot';
 import './admin/components/upload';
 import './admin/components/media';
+import './admin/components/post';
